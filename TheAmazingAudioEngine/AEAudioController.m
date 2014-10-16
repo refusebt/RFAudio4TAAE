@@ -245,6 +245,17 @@ typedef struct {
 @property (nonatomic, assign) NSTimeInterval pollInterval;
 @end
 
+// AS RFAudio For TAAE GZH 20141016
+@interface AEAudioControllerGenericOutputThread : NSThread
+{
+	AEAudioController *_audioController;
+	AudioUnit *_pAudioUnit;
+	AudioBufferList *_audioBufferList;
+}
+- (id)initWithAudioController:(AEAudioController *)audioController audioUnit:(AudioUnit *)pAudioUnit;
+@end
+// AE RFAudio For TAAE GZH 20141016
+
 @interface AEAudioController () {
     AUGraph             _audioGraph;
     AUNode              _ioNode;
@@ -276,6 +287,11 @@ typedef struct {
     
     AudioBufferList    *_audiobusMonitorBuffer;
     pthread_t           _renderThread;
+	
+// AS RFAudio For TAAE GZH 20141016
+	BOOL				_usingGenericOutput;
+	AEAudioControllerGenericOutputThread *_genericOutputThread;
+// AE RFAudio For TAAE GZH 20141016
 }
 
 - (BOOL)mustUpdateVoiceProcessingSettings;
@@ -773,7 +789,18 @@ static OSStatus topRenderNotifyCallback(void *inRefCon, AudioUnitRenderActionFla
     free(_inputCallbacks);
     
     if ( _audiobusMonitorBuffer ) AEFreeAudioBufferList(_audiobusMonitorBuffer);
-    
+	
+// AS RFAudio For TAAE GZH 20141016
+	if (_genericOutputThread != nil)
+	{
+		[_genericOutputThread cancel];
+		while ([_genericOutputThread isExecuting])
+		{
+			[NSThread sleepForTimeInterval:0.01];
+		}
+		_genericOutputThread = nil;
+	}
+// AE RFAudio For TAAE GZH 20141016
 }
 
 -(BOOL)start:(NSError **)error {
@@ -857,6 +884,14 @@ static OSStatus topRenderNotifyCallback(void *inRefCon, AudioUnitRenderActionFla
             [self updateInputDeviceStatus];
         }
     }
+	
+// AS RFAudio For TAAE GZH 20141016
+	if ( _usingGenericOutput )
+	{
+		_genericOutputThread = [[AEAudioControllerGenericOutputThread alloc] initWithAudioController:self audioUnit:&_ioAudioUnit];
+		[_genericOutputThread start];
+	}
+// AE RFAudio For TAAE GZH 20141016
     
     _started = YES;
     
@@ -2227,13 +2262,26 @@ static void interAppConnectedChangeCallback(void *inRefCon, AudioUnit inUnit, Au
     BOOL useVoiceProcessing = [self usingVPIO];
     
     // Input/output unit description
-    AudioComponentDescription io_desc = {
-        .componentType = kAudioUnitType_Output,
-        .componentSubType = useVoiceProcessing ? kAudioUnitSubType_VoiceProcessingIO : kAudioUnitSubType_RemoteIO,
-        .componentManufacturer = kAudioUnitManufacturer_Apple,
-        .componentFlags = 0,
-        .componentFlagsMask = 0
-    };
+// CS RFAudio For TAAE GZH 20141016
+//    AudioComponentDescription io_desc = {
+//        .componentType = kAudioUnitType_Output,
+//        .componentSubType = useVoiceProcessing ? kAudioUnitSubType_VoiceProcessingIO : kAudioUnitSubType_RemoteIO,
+//        .componentManufacturer = kAudioUnitManufacturer_Apple,
+//        .componentFlags = 0,
+//        .componentFlagsMask = 0
+//    };
+	
+	OSType outputType = _usingGenericOutput ? kAudioUnitSubType_GenericOutput :
+	(useVoiceProcessing ? kAudioUnitSubType_VoiceProcessingIO : kAudioUnitSubType_RemoteIO);
+	
+	AudioComponentDescription io_desc = {
+		.componentType = kAudioUnitType_Output,
+		.componentSubType = outputType,
+		.componentManufacturer = kAudioUnitManufacturer_Apple,
+		.componentFlags = 0,
+		.componentFlagsMask = 0
+	};
+// CE RFAudio For TAAE GZH 20141016
     
     // Create a node in the graph that is an AudioUnit, using the supplied AudioComponentDescription to find and open that unit
     result = AUGraphAddNode(_audioGraph, &io_desc, &_ioNode);
@@ -2425,7 +2473,10 @@ static void interAppConnectedChangeCallback(void *inRefCon, AudioUnit inUnit, Au
     // Only update if graph is running
     if ( self.running ) {
         // Retry a few times (as sometimes the graph will be in the wrong state to update)
-        OSStatus err;
+// CS RFAudio For TAAE GZH 20141016
+//        OSStatus err;
+		OSStatus err = 0;
+// CE RFAudio For TAAE GZH 20141016
         for ( int retry=0; retry<6; retry++ ) {
             err = AUGraphUpdate(_audioGraph, NULL);
             if ( err != kAUGraphErr_CannotDoInCurrentContext ) break;
@@ -3513,6 +3564,65 @@ static ABSenderPort * firstUpstreamAudiobusSenderPort(AEChannelRef channel) {
     return [NSString stringWithFormat:@"%@%@%@", inputsString, inputsString.length > 0 && outputsString.length > 0 ? @" and " : @"", outputsString];
 }
 
+// AS RFAudio For TAAE GZH 20141016
+#pragma mark - GenericOutput
+
+- (id)initGenericOutputWithAudioDescription:(AudioStreamBasicDescription)audioDescription
+{
+	if ( !(self = [super init]) ) return nil;
+	
+	NSAssert(audioDescription.mFormatID == kAudioFormatLinearPCM, @"Only linear PCM supported");
+	
+	_usingGenericOutput = YES;
+	_audioSessionCategory = AVAudioSessionCategoryAudioProcessing;
+	
+	_allowMixingWithOtherApps = YES;
+	_audioDescription = audioDescription;
+	_inputEnabled = NO;
+	_masterOutputVolume = 1.0;
+	_voiceProcessingEnabled = NO;
+	_inputMode = AEInputModeFixedAudioFormat;
+	_voiceProcessingOnlyForSpeakerAndMicrophone = YES;
+	_avoidMeasurementModeForBuiltInMic = YES;
+	_inputCallbacks = (input_callback_table_t*)calloc(sizeof(input_callback_table_t), 1);
+	_inputCallbackCount = 1;
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+	
+	if ( ABConnectionsChangedNotification ) {
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audiobusConnectionsChanged:) name:ABConnectionsChangedNotification object:nil];
+	}
+	
+	TPCircularBufferInit(&_realtimeThreadMessageBuffer, kMessageBufferLength);
+	TPCircularBufferInit(&_mainThreadMessageBuffer, kMessageBufferLength);
+	
+	if ( ![self initAudioSession] || ![self setup] ) {
+		_audioGraph = NULL;
+	}
+	
+	self.housekeepingTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:[[AEAudioControllerProxy alloc] initWithAudioController:self] selector:@selector(housekeeping) userInfo:nil repeats:YES];
+	
+	return self;
+}
+
+- (BOOL)isCancelGenericOutput
+{
+	if (_genericOutputThread != nil)
+	{
+		return [_genericOutputThread isCancelled];
+	}
+	return NO;
+}
+
+- (void)cancelGenericOutput
+{
+	if (_genericOutputThread != nil)
+	{
+		[_genericOutputThread cancel];
+	}
+}
+// AE RFAudio For TAAE GZH 20141016
+
 @end
 
 #pragma mark -
@@ -3556,3 +3666,79 @@ static ABSenderPort * firstUpstreamAudiobusSenderPort(AEChannelRef channel) {
     }
 }
 @end
+
+// AS RFAudio For TAAE GZH 20141016
+#pragma mark - AEAudioControllerGenericOutputThread
+
+@implementation AEAudioControllerGenericOutputThread
+
+- (id)initWithAudioController:(AEAudioController *)audioController audioUnit:(AudioUnit *)pAudioUnit
+{
+	if (!(self = [super init]))
+		return nil;
+	
+	_audioController = audioController;
+	_pAudioUnit = pAudioUnit;
+	_audioBufferList = AEAllocateAndInitAudioBufferList(audioController.audioDescription, kInputAudioBufferFrames);
+	
+	return self;
+}
+
+- (void)dealloc
+{
+	if (_audioBufferList != NULL)
+	{
+		AEFreeAudioBufferList(_audioBufferList);
+		_audioBufferList = NULL;
+	}
+}
+
+- (void)main
+{
+	pthread_setname_np("com.theamazingaudioengine.AEAudioControllerGenericOutputThread");
+	
+	@autoreleasepool
+	{
+		BOOL isError = NO;;
+		AudioUnitRenderActionFlags flags = 0;
+		AudioTimeStamp inTimeStamp;
+		memset(&inTimeStamp, 0, sizeof(AudioTimeStamp));
+		inTimeStamp.mFlags = kAudioTimeStampSampleTimeValid;
+		inTimeStamp.mSampleTime = 0;
+		UInt32 busNumber = 0;
+		UInt32 numberFrames = 512;
+		
+		while (![self isCancelled])
+		{
+			NSInteger outputCount = _audioController.outputReceivers.count;
+			if (outputCount <= 0)
+			{
+				break;
+			}
+			
+			if (!checkResult(AudioUnitRender(*_pAudioUnit,
+											 &flags,
+											 &inTimeStamp,
+											 busNumber,
+											 numberFrames,
+											 _audioBufferList),
+							 "AEAudioControllerGenericOutputThreadMain"))
+			{
+				isError = YES;
+				break;
+			}
+		}
+	}
+	
+	_audioController = NULL;
+	_pAudioUnit = NULL;
+	
+	if (_audioBufferList != NULL)
+	{
+		AEFreeAudioBufferList(_audioBufferList);
+		_audioBufferList = NULL;
+	}
+}
+
+@end
+// AE RFAudio For TAAE GZH 20141016

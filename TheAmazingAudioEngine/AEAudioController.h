@@ -1351,6 +1351,14 @@ NSTimeInterval AEAudioControllerInputLatency(AEAudioController *controller);
  */
 NSTimeInterval AEAudioControllerOutputLatency(AEAudioController *controller);
 
+// AS RFAudio For TAAE GZH 20141016
+#pragma mark - GenericOutput
+
+- (id)initGenericOutputWithAudioDescription:(AudioStreamBasicDescription)audioDescription;
+- (BOOL)isCancelGenericOutput;
+- (void)cancelGenericOutput;
+// AE RFAudio For TAAE GZH 20141016
+
 @end
 
 #ifdef __cplusplus
