@@ -7,7 +7,7 @@
 //
 
 #import "TPOscilloscopeLayer.h"
-#import "TheAmazingAudioEngine.h"
+#import <TheAmazingAudioEngine/TheAmazingAudioEngine.h>
 #import <Accelerate/Accelerate.h>
 #include <libkern/OSAtomic.h>
 

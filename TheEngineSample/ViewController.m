@@ -7,13 +7,13 @@
 //
 
 #import "ViewController.h"
-#import "TheAmazingAudioEngine.h"
-#import "TPOscilloscopeLayer.h"
-#import "AEPlaythroughChannel.h"
-#import "AEExpanderFilter.h"
-#import "AELimiterFilter.h"
-#import "AERecorder.h"
+#import <TheAmazingAudioEngine/TheAmazingAudioEngine.h>
+#import <TheAmazingAudioEngine/AEPlaythroughChannel.h>
+#import <TheAmazingAudioEngine/AEExpanderFilter.h>
+#import <TheAmazingAudioEngine/AELimiterFilter.h>
+#import <TheAmazingAudioEngine/AERecorder.h>
 #import <QuartzCore/QuartzCore.h>
+#import "TPOscilloscopeLayer.h"
 
 #define checkResult(result,operation) (_checkResult((result),(operation),strrchr(__FILE__, '/')+1,__LINE__))
 static inline BOOL _checkResult(OSStatus result, const char *operation, const char* file, int line) {

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "TheAmazingAudioEngine.h"
+#import <TheAmazingAudioEngine/TheAmazingAudioEngine.h>
 
 @interface TPOscilloscopeLayer : CALayer <AEAudioReceiver>
 

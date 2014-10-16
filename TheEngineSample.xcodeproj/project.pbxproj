@@ -30,15 +30,6 @@
 		4C0C24CC159A246500D23E13 /* TPOscilloscopeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C24CB159A246500D23E13 /* TPOscilloscopeLayer.m */; };
 		4C58F8981945573C0039FB0A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C58F8971945573C0039FB0A /* AVFoundation.framework */; };
 		4C7C67F416F1606600721E60 /* libTheAmazingAudioEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7C67F116F1605A00721E60 /* libTheAmazingAudioEngine.a */; };
-		4C7C680916F1609800721E60 /* AEExpanderFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C67F816F1609800721E60 /* AEExpanderFilter.m */; };
-		4C7C680A16F1609800721E60 /* AELimiter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C67FA16F1609800721E60 /* AELimiter.m */; };
-		4C7C680B16F1609800721E60 /* AELimiterFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C67FC16F1609800721E60 /* AELimiterFilter.m */; };
-		4C7C680C16F1609800721E60 /* AEMixerBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C67FE16F1609800721E60 /* AEMixerBuffer.m */; };
-		4C7C680D16F1609800721E60 /* AEPlaythroughChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C680016F1609800721E60 /* AEPlaythroughChannel.m */; };
-		4C7C680E16F1609800721E60 /* AERecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C680216F1609800721E60 /* AERecorder.m */; };
-		4C7C680F16F1609800721E60 /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 4C7C680416F1609800721E60 /* README.markdown */; };
-		4C7C681016F1609800721E60 /* TPCircularBuffer+AudioBufferList.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C680516F1609800721E60 /* TPCircularBuffer+AudioBufferList.c */; };
-		4C7C681116F1609800721E60 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C680716F1609800721E60 /* TPCircularBuffer.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,23 +79,6 @@
 		4C0C24CB159A246500D23E13 /* TPOscilloscopeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPOscilloscopeLayer.m; sourceTree = "<group>"; };
 		4C58F8971945573C0039FB0A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4C7C67EC16F1605A00721E60 /* TheAmazingAudioEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = TheAmazingAudioEngine.xcodeproj; sourceTree = "<group>"; };
-		4C7C67F716F1609800721E60 /* AEExpanderFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEExpanderFilter.h; sourceTree = "<group>"; };
-		4C7C67F816F1609800721E60 /* AEExpanderFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEExpanderFilter.m; sourceTree = "<group>"; };
-		4C7C67F916F1609800721E60 /* AELimiter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AELimiter.h; sourceTree = "<group>"; };
-		4C7C67FA16F1609800721E60 /* AELimiter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AELimiter.m; sourceTree = "<group>"; };
-		4C7C67FB16F1609800721E60 /* AELimiterFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AELimiterFilter.h; sourceTree = "<group>"; };
-		4C7C67FC16F1609800721E60 /* AELimiterFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AELimiterFilter.m; sourceTree = "<group>"; };
-		4C7C67FD16F1609800721E60 /* AEMixerBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEMixerBuffer.h; sourceTree = "<group>"; };
-		4C7C67FE16F1609800721E60 /* AEMixerBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEMixerBuffer.m; sourceTree = "<group>"; };
-		4C7C67FF16F1609800721E60 /* AEPlaythroughChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEPlaythroughChannel.h; sourceTree = "<group>"; };
-		4C7C680016F1609800721E60 /* AEPlaythroughChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEPlaythroughChannel.m; sourceTree = "<group>"; };
-		4C7C680116F1609800721E60 /* AERecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AERecorder.h; sourceTree = "<group>"; };
-		4C7C680216F1609800721E60 /* AERecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AERecorder.m; sourceTree = "<group>"; };
-		4C7C680416F1609800721E60 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
-		4C7C680516F1609800721E60 /* TPCircularBuffer+AudioBufferList.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "TPCircularBuffer+AudioBufferList.c"; sourceTree = "<group>"; };
-		4C7C680616F1609800721E60 /* TPCircularBuffer+AudioBufferList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TPCircularBuffer+AudioBufferList.h"; sourceTree = "<group>"; };
-		4C7C680716F1609800721E60 /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TPCircularBuffer.c; sourceTree = "<group>"; };
-		4C7C680816F1609800721E60 /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCircularBuffer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,41 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				4C7C67EC16F1605A00721E60 /* TheAmazingAudioEngine.xcodeproj */,
-				4C7C67F616F1609800721E60 /* Modules */,
 			);
 			name = "The Amazing Audio Engine";
-			sourceTree = "<group>";
-		};
-		4C7C67F616F1609800721E60 /* Modules */ = {
-			isa = PBXGroup;
-			children = (
-				4C7C67F716F1609800721E60 /* AEExpanderFilter.h */,
-				4C7C67F816F1609800721E60 /* AEExpanderFilter.m */,
-				4C7C67F916F1609800721E60 /* AELimiter.h */,
-				4C7C67FA16F1609800721E60 /* AELimiter.m */,
-				4C7C67FB16F1609800721E60 /* AELimiterFilter.h */,
-				4C7C67FC16F1609800721E60 /* AELimiterFilter.m */,
-				4C7C67FD16F1609800721E60 /* AEMixerBuffer.h */,
-				4C7C67FE16F1609800721E60 /* AEMixerBuffer.m */,
-				4C7C67FF16F1609800721E60 /* AEPlaythroughChannel.h */,
-				4C7C680016F1609800721E60 /* AEPlaythroughChannel.m */,
-				4C7C680116F1609800721E60 /* AERecorder.h */,
-				4C7C680216F1609800721E60 /* AERecorder.m */,
-				4C7C680316F1609800721E60 /* TPCircularBuffer */,
-			);
-			path = Modules;
-			sourceTree = "<group>";
-		};
-		4C7C680316F1609800721E60 /* TPCircularBuffer */ = {
-			isa = PBXGroup;
-			children = (
-				4C7C680416F1609800721E60 /* README.markdown */,
-				4C7C680516F1609800721E60 /* TPCircularBuffer+AudioBufferList.c */,
-				4C7C680616F1609800721E60 /* TPCircularBuffer+AudioBufferList.h */,
-				4C7C680716F1609800721E60 /* TPCircularBuffer.c */,
-				4C7C680816F1609800721E60 /* TPCircularBuffer.h */,
-			);
-			path = TPCircularBuffer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,7 +210,7 @@
 		4C0C247C1599FADD00D23E13 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "A Tasty Pixel";
 			};
 			buildConfigurationList = 4C0C247F1599FADD00D23E13 /* Build configuration list for PBXProject "TheEngineSample" */;
@@ -317,7 +258,6 @@
 				4C0C24B21599FD5800D23E13 /* Organ Run.m4a in Resources */,
 				4C0C24B31599FD5800D23E13 /* Southern Rock Drums.m4a in Resources */,
 				4C0C24B41599FD5800D23E13 /* Southern Rock Organ.m4a in Resources */,
-				4C7C680F16F1609800721E60 /* README.markdown in Resources */,
 				4C09450A170001660054608E /* Default-568h@2x.png in Resources */,
 				4C09450B170001660054608E /* Default.png in Resources */,
 				4C09450C170001660054608E /* Default@2x.png in Resources */,
@@ -336,14 +276,6 @@
 				4C0C249A1599FADD00D23E13 /* AppDelegate.m in Sources */,
 				4C0C249D1599FADD00D23E13 /* ViewController.m in Sources */,
 				4C0C24CC159A246500D23E13 /* TPOscilloscopeLayer.m in Sources */,
-				4C7C680916F1609800721E60 /* AEExpanderFilter.m in Sources */,
-				4C7C680A16F1609800721E60 /* AELimiter.m in Sources */,
-				4C7C680B16F1609800721E60 /* AELimiterFilter.m in Sources */,
-				4C7C680C16F1609800721E60 /* AEMixerBuffer.m in Sources */,
-				4C7C680D16F1609800721E60 /* AEPlaythroughChannel.m in Sources */,
-				4C7C680E16F1609800721E60 /* AERecorder.m in Sources */,
-				4C7C681016F1609800721E60 /* TPCircularBuffer+AudioBufferList.c in Sources */,
-				4C7C681116F1609800721E60 /* TPCircularBuffer.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,9 +310,11 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -411,9 +345,11 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -432,12 +368,17 @@
 		4C0C24A71599FADD00D23E13 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TheEngineSample/TheEngineSample-Prefix.pch";
-				HEADER_SEARCH_PATHS = TheAmazingAudioEngine;
+				HEADER_SEARCH_PATHS = (
+					TheAmazingAudioEngine,
+					"${BUILT_PRODUCTS_DIR}",
+				);
 				INFOPLIST_FILE = "TheEngineSample/TheEngineSample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = "${BUILT_PRODUCTS_DIR}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -446,12 +387,17 @@
 		4C0C24A81599FADD00D23E13 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TheEngineSample/TheEngineSample-Prefix.pch";
-				HEADER_SEARCH_PATHS = TheAmazingAudioEngine;
+				HEADER_SEARCH_PATHS = (
+					TheAmazingAudioEngine,
+					"${BUILT_PRODUCTS_DIR}",
+				);
 				INFOPLIST_FILE = "TheEngineSample/TheEngineSample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = "${BUILT_PRODUCTS_DIR}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

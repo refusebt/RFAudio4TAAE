@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-#import "TheAmazingAudioEngine.h"
+#import <TheAmazingAudioEngine/TheAmazingAudioEngine.h>
 
 @implementation AppDelegate
 
