@@ -36,6 +36,8 @@
 		4C99588E16C0825F0011FB01 /* AEAudioUnitFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C99588C16C0825F0011FB01 /* AEAudioUnitFilter.m */; };
 		4CEC0EB916B5294300D11ED9 /* AEBlockFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CEC0EB716B5294200D11ED9 /* AEBlockFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CEC0EBA16B5294300D11ED9 /* AEBlockFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC0EB816B5294300D11ED9 /* AEBlockFilter.m */; };
+		788911A819F01C5400075F8C /* RFAudioMixer.h in Headers */ = {isa = PBXBuildFile; fileRef = 788911A419F01C5400075F8C /* RFAudioMixer.h */; };
+		788911A919F01C5400075F8C /* RFAudioMixer.m in Sources */ = {isa = PBXBuildFile; fileRef = 788911A519F01C5400075F8C /* RFAudioMixer.m */; };
 		788A2FFB19EFEF6300252DD9 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C698CFB162B02EF008B159D /* TPCircularBuffer.c */; };
 		788A2FFC19EFEF6300252DD9 /* AEMixerBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8A0F3E1540BBD300307CB6 /* AEMixerBuffer.m */; };
 		788A2FFD19EFEF6300252DD9 /* AELimiter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA689B21541EF4A00AF8DDD /* AELimiter.m */; };
@@ -119,6 +121,8 @@
 		4CE501971493F82600F23607 /* TheAmazingAudioEngine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TheAmazingAudioEngine-Prefix.pch"; sourceTree = "<group>"; };
 		4CEC0EB716B5294200D11ED9 /* AEBlockFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEBlockFilter.h; sourceTree = "<group>"; };
 		4CEC0EB816B5294300D11ED9 /* AEBlockFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEBlockFilter.m; sourceTree = "<group>"; };
+		788911A419F01C5400075F8C /* RFAudioMixer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFAudioMixer.h; sourceTree = "<group>"; };
+		788911A519F01C5400075F8C /* RFAudioMixer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFAudioMixer.m; sourceTree = "<group>"; };
 		788A300319EFEFE400252DD9 /* AEAssetReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEAssetReader.h; sourceTree = "<group>"; };
 		788A300419EFEFE400252DD9 /* AEAssetReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEAssetReader.m; sourceTree = "<group>"; };
 		788A300519EFEFE400252DD9 /* AEAvPlayerItemPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEAvPlayerItemPlayer.h; sourceTree = "<group>"; };
@@ -255,6 +259,8 @@
 			children = (
 				788A301B19EFF5CB00252DD9 /* RFAudioKit.h */,
 				788A301C19EFF5CB00252DD9 /* RFAudioKit.m */,
+				788911A419F01C5400075F8C /* RFAudioMixer.h */,
+				788911A519F01C5400075F8C /* RFAudioMixer.m */,
 				788A300319EFEFE400252DD9 /* AEAssetReader.h */,
 				788A300419EFEFE400252DD9 /* AEAssetReader.m */,
 				788A300519EFEFE400252DD9 /* AEAvPlayerItemPlayer.h */,
@@ -293,6 +299,7 @@
 				788A301119EFEFE400252DD9 /* AEAvPlayerItemPlayer.h in Headers */,
 				788A301D19EFF5CB00252DD9 /* RFAudioKit.h in Headers */,
 				788A301319EFEFE400252DD9 /* AEOutputConvert.h in Headers */,
+				788911A819F01C5400075F8C /* RFAudioMixer.h in Headers */,
 				788A300F19EFEFE400252DD9 /* AEAssetReader.h in Headers */,
 				788A301919EFEFE400252DD9 /* SmbPitchShift.h in Headers */,
 				4C99588516BB74720011FB01 /* AEAudioUnitChannel.h in Headers */,
@@ -405,6 +412,7 @@
 				4C215D081523A8E500D36CAD /* AEAudioController.m in Sources */,
 				4C215D091523A8E500D36CAD /* AEAudioFilePlayer.m in Sources */,
 				4C215D0A1523A8E500D36CAD /* AEUtilities.c in Sources */,
+				788911A919F01C5400075F8C /* RFAudioMixer.m in Sources */,
 				788A301A19EFEFE400252DD9 /* SmbPitchShift.m in Sources */,
 				4C49FE34153DC21A008725E0 /* AEAudioFileLoaderOperation.m in Sources */,
 				4C38DC5715458AB1009F4454 /* AEAudioFileWriter.m in Sources */,
