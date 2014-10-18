@@ -7,6 +7,7 @@
 //
 
 #import "AEOutputConvertWriter.h"
+#import <AVFoundation/AVFoundation.h>
 
 #define checkResult(result,operation) (_checkResult((result),(operation),strrchr(__FILE__, '/')+1,__LINE__))
 static inline BOOL _checkResult(OSStatus result, const char *operation, const char* file, int line)
@@ -23,7 +24,6 @@ static inline BOOL _checkResult(OSStatus result, const char *operation, const ch
 {
 	BOOL _writing;
     ExtAudioFileRef _audioFile;
-    UInt32 _priorMixOverrideValue;
 }
 
 @end
@@ -72,16 +72,13 @@ static inline BOOL _checkResult(OSStatus result, const char *operation, const ch
         }
         
         // AAC won't work if the 'mix with others' session property is enabled. Disable it if it's on.
-        UInt32 size = sizeof(_priorMixOverrideValue);
-        checkResult(AudioSessionGetProperty(kAudioSessionProperty_OverrideCategoryMixWithOthers, &size, &_priorMixOverrideValue),
-                    "AudioSessionGetProperty(kAudioSessionProperty_OverrideCategoryMixWithOthers)");
-        
-        if (_priorMixOverrideValue != NO)
+		AVAudioSessionCategoryOptions sessionCategoryOption = [[AVAudioSession sharedInstance] categoryOptions];
+		if ((AVAudioSessionCategoryOptionMixWithOthers & sessionCategoryOption) == AVAudioSessionCategoryOptionMixWithOthers)
 		{
-            UInt32 allowMixing = NO;
-            checkResult(AudioSessionSetProperty(kAudioSessionProperty_OverrideCategoryMixWithOthers, sizeof (allowMixing), &allowMixing),
-                        "AudioSessionSetProperty(kAudioSessionProperty_OverrideCategoryMixWithOthers)");
-        }
+			[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAudioProcessing
+											 withOptions:(sessionCategoryOption ^ AVAudioSessionCategoryOptionMixWithOthers)
+												   error:nil];
+		}
         
         // Create the file
         status = ExtAudioFileCreateWithURL((__bridge CFURLRef)[NSURL fileURLWithPath:_path],
@@ -175,12 +172,6 @@ static inline BOOL _checkResult(OSStatus result, const char *operation, const ch
     _writing = NO;
     
     checkResult(ExtAudioFileDispose(_audioFile), "AudioFileClose");
-    
-    if (_priorMixOverrideValue)
-	{
-        checkResult(AudioSessionSetProperty(kAudioSessionProperty_OverrideCategoryMixWithOthers, sizeof(_priorMixOverrideValue), &_priorMixOverrideValue),
-                    "AudioSessionSetProperty(kAudioSessionProperty_OverrideCategoryMixWithOthers)");
-    }
 }
 
 @end
