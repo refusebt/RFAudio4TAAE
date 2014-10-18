@@ -29,25 +29,8 @@
 		4C0C24BC159A00D500D23E13 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C0C24BB159A00D500D23E13 /* Accelerate.framework */; };
 		4C0C24CC159A246500D23E13 /* TPOscilloscopeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C24CB159A246500D23E13 /* TPOscilloscopeLayer.m */; };
 		4C58F8981945573C0039FB0A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C58F8971945573C0039FB0A /* AVFoundation.framework */; };
-		4C7C67F416F1606600721E60 /* libTheAmazingAudioEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7C67F116F1605A00721E60 /* libTheAmazingAudioEngine.a */; };
+		7856354B19F23F0B002C625E /* libTheAmazingAudioEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7856354A19F23F0B002C625E /* libTheAmazingAudioEngine.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		4C7C67F016F1605A00721E60 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4C7C67EC16F1605A00721E60 /* TheAmazingAudioEngine.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4C215CEC1523A7D500D36CAD;
-			remoteInfo = TheAmazingAudioEngine;
-		};
-		4C7C681216F1619D00721E60 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4C7C67EC16F1605A00721E60 /* TheAmazingAudioEngine.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4C215CEB1523A7D500D36CAD;
-			remoteInfo = TheAmazingAudioEngine;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4C094506170001660054608E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -78,7 +61,7 @@
 		4C0C24CA159A246500D23E13 /* TPOscilloscopeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPOscilloscopeLayer.h; sourceTree = "<group>"; };
 		4C0C24CB159A246500D23E13 /* TPOscilloscopeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPOscilloscopeLayer.m; sourceTree = "<group>"; };
 		4C58F8971945573C0039FB0A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		4C7C67EC16F1605A00721E60 /* TheAmazingAudioEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = TheAmazingAudioEngine.xcodeproj; sourceTree = "<group>"; };
+		7856354A19F23F0B002C625E /* libTheAmazingAudioEngine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTheAmazingAudioEngine.a; path = "../DerivedData/RFAudio4TAAE/Build/Products/Debug-iphoneos/libTheAmazingAudioEngine.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,8 +69,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7856354B19F23F0B002C625E /* libTheAmazingAudioEngine.a in Frameworks */,
 				4C58F8981945573C0039FB0A /* AVFoundation.framework in Frameworks */,
-				4C7C67F416F1606600721E60 /* libTheAmazingAudioEngine.a in Frameworks */,
 				4C0C24BC159A00D500D23E13 /* Accelerate.framework in Frameworks */,
 				4C0C24BA159A00CB00D23E13 /* AudioToolbox.framework in Frameworks */,
 				4C0C24B8159A000B00D23E13 /* QuartzCore.framework in Frameworks */,
@@ -103,7 +86,6 @@
 		4C0C247A1599FADD00D23E13 = {
 			isa = PBXGroup;
 			children = (
-				4C7C67F516F1608300721E60 /* The Amazing Audio Engine */,
 				4C0C248F1599FADD00D23E13 /* TheEngineSample */,
 				4C0C24881599FADD00D23E13 /* Frameworks */,
 				4C0C24861599FADD00D23E13 /* Products */,
@@ -121,6 +103,7 @@
 		4C0C24881599FADD00D23E13 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7856354A19F23F0B002C625E /* libTheAmazingAudioEngine.a */,
 				4C58F8971945573C0039FB0A /* AVFoundation.framework */,
 				4C0C24BB159A00D500D23E13 /* Accelerate.framework */,
 				4C0C24B9159A00CB00D23E13 /* AudioToolbox.framework */,
@@ -167,22 +150,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4C7C67ED16F1605A00721E60 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4C7C67F116F1605A00721E60 /* libTheAmazingAudioEngine.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		4C7C67F516F1608300721E60 /* The Amazing Audio Engine */ = {
-			isa = PBXGroup;
-			children = (
-				4C7C67EC16F1605A00721E60 /* TheAmazingAudioEngine.xcodeproj */,
-			);
-			name = "The Amazing Audio Engine";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -197,7 +164,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4C7C681316F1619D00721E60 /* PBXTargetDependency */,
 			);
 			name = TheEngineSample;
 			productName = TheEngineSample;
@@ -223,28 +189,12 @@
 			mainGroup = 4C0C247A1599FADD00D23E13;
 			productRefGroup = 4C0C24861599FADD00D23E13 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 4C7C67ED16F1605A00721E60 /* Products */;
-					ProjectRef = 4C7C67EC16F1605A00721E60 /* TheAmazingAudioEngine.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				4C0C24841599FADD00D23E13 /* TheEngineSample */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		4C7C67F116F1605A00721E60 /* libTheAmazingAudioEngine.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libTheAmazingAudioEngine.a;
-			remoteRef = 4C7C67F016F1605A00721E60 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4C0C24831599FADD00D23E13 /* Resources */ = {
@@ -280,14 +230,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		4C7C681316F1619D00721E60 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = TheAmazingAudioEngine;
-			targetProxy = 4C7C681216F1619D00721E60 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4C0C24921599FADD00D23E13 /* InfoPlist.strings */ = {
@@ -379,7 +321,10 @@
 				);
 				INFOPLIST_FILE = "TheEngineSample/TheEngineSample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = "${BUILT_PRODUCTS_DIR}";
+				LIBRARY_SEARCH_PATHS = (
+					"${BUILT_PRODUCTS_DIR}",
+					"/Users/9sky/Documents/KingCloud/快盘/!Now/RFAudio4TAAE/DerivedData/RFAudio4TAAE/Build/Products/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "f96f2916-d447-4222-9b3c-c46ad7a8ac62";
 				WRAPPER_EXTENSION = app;
@@ -400,7 +345,10 @@
 				);
 				INFOPLIST_FILE = "TheEngineSample/TheEngineSample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = "${BUILT_PRODUCTS_DIR}";
+				LIBRARY_SEARCH_PATHS = (
+					"${BUILT_PRODUCTS_DIR}",
+					"/Users/9sky/Documents/KingCloud/快盘/!Now/RFAudio4TAAE/DerivedData/RFAudio4TAAE/Build/Products/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "f96f2916-d447-4222-9b3c-c46ad7a8ac62";
 				WRAPPER_EXTENSION = app;
