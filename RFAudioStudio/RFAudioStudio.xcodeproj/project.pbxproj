@@ -23,9 +23,7 @@
 		7856361619F25540002C625E /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 785635D419F25540002C625E /* SVProgressHUD.bundle */; };
 		7856361719F25540002C625E /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 785635D619F25540002C625E /* SVProgressHUD.m */; };
 		7856361819F25540002C625E /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 785635D819F25540002C625E /* UIPlaceHolderTextView.m */; };
-		7856361919F25540002C625E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 785635D919F25540002C625E /* LICENSE */; };
 		7856361A19F25540002C625E /* NSObject+RFEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 785635DB19F25540002C625E /* NSObject+RFEvent.m */; };
-		7856361B19F25540002C625E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 785635DC19F25540002C625E /* README.md */; };
 		7856361C19F25540002C625E /* RFActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 785635DF19F25540002C625E /* RFActionSheet.m */; };
 		7856361D19F25540002C625E /* RFAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 785635E119F25540002C625E /* RFAlertView.m */; };
 		7856361E19F25540002C625E /* RFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 785635E319F25540002C625E /* RFAppDelegate.m */; };
@@ -85,10 +83,8 @@
 		785635D619F25540002C625E /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		785635D719F25540002C625E /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
 		785635D819F25540002C625E /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
-		785635D919F25540002C625E /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		785635DA19F25540002C625E /* NSObject+RFEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RFEvent.h"; sourceTree = "<group>"; };
 		785635DB19F25540002C625E /* NSObject+RFEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RFEvent.m"; sourceTree = "<group>"; };
-		785635DC19F25540002C625E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		785635DD19F25540002C625E /* RF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RF.h; sourceTree = "<group>"; };
 		785635DE19F25540002C625E /* RFActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFActionSheet.h; sourceTree = "<group>"; };
 		785635DF19F25540002C625E /* RFActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFActionSheet.m; sourceTree = "<group>"; };
@@ -226,10 +222,8 @@
 			isa = PBXGroup;
 			children = (
 				785635CE19F25540002C625E /* Dependence */,
-				785635D919F25540002C625E /* LICENSE */,
 				785635DA19F25540002C625E /* NSObject+RFEvent.h */,
 				785635DB19F25540002C625E /* NSObject+RFEvent.m */,
-				785635DC19F25540002C625E /* README.md */,
 				785635DD19F25540002C625E /* RF.h */,
 				785635DE19F25540002C625E /* RFActionSheet.h */,
 				785635DF19F25540002C625E /* RFActionSheet.m */,
@@ -314,6 +308,34 @@
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
+		7856363719F25949002C625E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		7856363819F25949002C625E /* Page */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Page;
+			sourceTree = "<group>";
+		};
+		7856363919F25949002C625E /* Public */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		7856363A19F25949002C625E /* Work */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Work;
+			sourceTree = "<group>";
+		};
 		78AC313519F23C810005ADDE = {
 			isa = PBXGroup;
 			children = (
@@ -333,11 +355,14 @@
 		78AC314019F23C810005ADDE /* RFAudioStudio */ = {
 			isa = PBXGroup;
 			children = (
+				7856363719F25949002C625E /* Data */,
+				7856363819F25949002C625E /* Page */,
+				7856363919F25949002C625E /* Public */,
+				7856363A19F25949002C625E /* Work */,
 				785635CC19F25540002C625E /* RF */,
 				785635C419F253BB002C625E /* Vendor */,
 				78AC314519F23C810005ADDE /* AppDelegate.h */,
 				78AC314619F23C810005ADDE /* AppDelegate.m */,
-				785635CB19F2547B002C625E /* Prefix.pch */,
 				785635B719F253BB002C625E /* Resource */,
 				78AC314119F23C810005ADDE /* Supporting Files */,
 				7856354819F23DA3002C625E /* Framework */,
@@ -348,6 +373,7 @@
 		78AC314119F23C810005ADDE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				785635CB19F2547B002C625E /* Prefix.pch */,
 				78AC314319F23C810005ADDE /* main.m */,
 			);
 			name = "Supporting Files";
@@ -411,7 +437,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7856361919F25540002C625E /* LICENSE in Resources */,
 				7856361619F25540002C625E /* SVProgressHUD.bundle in Resources */,
 				785635C719F253BB002C625E /* Images.xcassets in Resources */,
 				785635C619F253BB002C625E /* Localizable.strings in Resources */,
@@ -450,7 +475,6 @@
 				7856362E19F25540002C625E /* RFUICountDownButton.m in Sources */,
 				7856362719F25540002C625E /* RFColor.m in Sources */,
 				7856363319F25540002C625E /* RFUITextView.m in Sources */,
-				7856361B19F25540002C625E /* README.md in Sources */,
 				7856362B19F25540002C625E /* RFRequestWork.m in Sources */,
 				7856362519F25540002C625E /* RFCmdRequest.m in Sources */,
 				7856363019F25540002C625E /* RFUILoadingView.m in Sources */,
