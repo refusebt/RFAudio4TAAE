@@ -51,6 +51,12 @@
 		7856363419F25540002C625E /* RFWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 7856360F19F25540002C625E /* RFWork.m */; };
 		7856363519F25540002C625E /* UIButton+RFImageWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 7856361119F25540002C625E /* UIButton+RFImageWork.m */; };
 		7856363619F25540002C625E /* UIImageView+RFImageWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 7856361319F25540002C625E /* UIImageView+RFImageWork.m */; };
+		7856363E19F25FCA002C625E /* RasKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7856363D19F25FCA002C625E /* RasKit.m */; };
+		7856364119F25FD9002C625E /* RasUIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7856364019F25FD9002C625E /* RasUIKit.m */; };
+		7856364B19F26136002C625E /* RasDataMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 7856364A19F26136002C625E /* RasDataMgr.m */; };
+		7856365019F26167002C625E /* RasBaseNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7856364D19F26167002C625E /* RasBaseNavigationControllerViewController.m */; };
+		7856365119F26167002C625E /* RasBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7856364F19F26167002C625E /* RasBaseViewController.m */; };
+		7856365419F2618B002C625E /* RasWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 7856365319F2618B002C625E /* RasWork.m */; };
 		78AC314419F23C810005ADDE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AC314319F23C810005ADDE /* main.m */; };
 		78AC314719F23C810005ADDE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AC314619F23C810005ADDE /* AppDelegate.m */; };
 /* End PBXBuildFile section */
@@ -70,7 +76,6 @@
 		785635BE19F253BB002C625E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		785635BF19F253BB002C625E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		785635C019F253BB002C625E /* multi-language.xls */ = {isa = PBXFileReference; lastKnownFileType = file; path = "multi-language.xls"; sourceTree = "<group>"; };
-		785635C119F253BB002C625E /* XiaoXunTong-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "XiaoXunTong-Info.plist"; sourceTree = "<group>"; };
 		785635C219F253BB002C625E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		785635C319F253BB002C625E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		785635CB19F2547B002C625E /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
@@ -140,6 +145,20 @@
 		7856361119F25540002C625E /* UIButton+RFImageWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+RFImageWork.m"; sourceTree = "<group>"; };
 		7856361219F25540002C625E /* UIImageView+RFImageWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+RFImageWork.h"; sourceTree = "<group>"; };
 		7856361319F25540002C625E /* UIImageView+RFImageWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+RFImageWork.m"; sourceTree = "<group>"; };
+		7856363B19F25FB6002C625E /* Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
+		7856363C19F25FCA002C625E /* RasKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasKit.h; sourceTree = "<group>"; };
+		7856363D19F25FCA002C625E /* RasKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RasKit.m; sourceTree = "<group>"; };
+		7856363F19F25FD9002C625E /* RasUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasUIKit.h; sourceTree = "<group>"; };
+		7856364019F25FD9002C625E /* RasUIKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RasUIKit.m; sourceTree = "<group>"; };
+		7856364219F2601A002C625E /* LocalString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalString.h; sourceTree = "<group>"; };
+		7856364919F26136002C625E /* RasDataMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasDataMgr.h; sourceTree = "<group>"; };
+		7856364A19F26136002C625E /* RasDataMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RasDataMgr.m; sourceTree = "<group>"; };
+		7856364C19F26167002C625E /* RasBaseNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasBaseNavigationControllerViewController.h; sourceTree = "<group>"; };
+		7856364D19F26167002C625E /* RasBaseNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RasBaseNavigationControllerViewController.m; sourceTree = "<group>"; };
+		7856364E19F26167002C625E /* RasBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasBaseViewController.h; sourceTree = "<group>"; };
+		7856364F19F26167002C625E /* RasBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RasBaseViewController.m; sourceTree = "<group>"; };
+		7856365219F2618B002C625E /* RasWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasWork.h; sourceTree = "<group>"; };
+		7856365319F2618B002C625E /* RasWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RasWork.m; sourceTree = "<group>"; };
 		78AC313E19F23C810005ADDE /* RFAudioStudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RFAudioStudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78AC314319F23C810005ADDE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		78AC314519F23C810005ADDE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -192,7 +211,7 @@
 				785635BE19F253BB002C625E /* Images.xcassets */,
 				785635BF19F253BB002C625E /* Info.plist */,
 				785635C019F253BB002C625E /* multi-language.xls */,
-				785635C119F253BB002C625E /* XiaoXunTong-Info.plist */,
+				7856364219F2601A002C625E /* LocalString.h */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -311,6 +330,8 @@
 		7856363719F25949002C625E /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				7856364919F26136002C625E /* RasDataMgr.h */,
+				7856364A19F26136002C625E /* RasDataMgr.m */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -318,6 +339,10 @@
 		7856363819F25949002C625E /* Page */ = {
 			isa = PBXGroup;
 			children = (
+				7856364C19F26167002C625E /* RasBaseNavigationControllerViewController.h */,
+				7856364D19F26167002C625E /* RasBaseNavigationControllerViewController.m */,
+				7856364E19F26167002C625E /* RasBaseViewController.h */,
+				7856364F19F26167002C625E /* RasBaseViewController.m */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -325,6 +350,11 @@
 		7856363919F25949002C625E /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				7856363B19F25FB6002C625E /* Define.h */,
+				7856363C19F25FCA002C625E /* RasKit.h */,
+				7856363D19F25FCA002C625E /* RasKit.m */,
+				7856363F19F25FD9002C625E /* RasUIKit.h */,
+				7856364019F25FD9002C625E /* RasUIKit.m */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -332,6 +362,8 @@
 		7856363A19F25949002C625E /* Work */ = {
 			isa = PBXGroup;
 			children = (
+				7856365219F2618B002C625E /* RasWork.h */,
+				7856365319F2618B002C625E /* RasWork.m */,
 			);
 			path = Work;
 			sourceTree = "<group>";
@@ -455,6 +487,8 @@
 				7856361E19F25540002C625E /* RFAppDelegate.m in Sources */,
 				7856361A19F25540002C625E /* NSObject+RFEvent.m in Sources */,
 				7856363519F25540002C625E /* UIButton+RFImageWork.m in Sources */,
+				7856365119F26167002C625E /* RasBaseViewController.m in Sources */,
+				7856365419F2618B002C625E /* RasWork.m in Sources */,
 				7856362619F25540002C625E /* RFCmdResult.m in Sources */,
 				7856362019F25540002C625E /* RFBaseTabBarController.m in Sources */,
 				7856361C19F25540002C625E /* RFActionSheet.m in Sources */,
@@ -471,9 +505,11 @@
 				7856363219F25540002C625E /* RFUITextField.m in Sources */,
 				7856362F19F25540002C625E /* RFUIKit.m in Sources */,
 				7856362A19F25540002C625E /* RFNetworkKit.m in Sources */,
+				7856365019F26167002C625E /* RasBaseNavigationControllerViewController.m in Sources */,
 				7856362319F25540002C625E /* RFCmdBgRequest.m in Sources */,
 				7856362E19F25540002C625E /* RFUICountDownButton.m in Sources */,
 				7856362719F25540002C625E /* RFColor.m in Sources */,
+				7856363E19F25FCA002C625E /* RasKit.m in Sources */,
 				7856363319F25540002C625E /* RFUITextView.m in Sources */,
 				7856362B19F25540002C625E /* RFRequestWork.m in Sources */,
 				7856362519F25540002C625E /* RFCmdRequest.m in Sources */,
@@ -483,7 +519,9 @@
 				7856361519F25540002C625E /* Reachability.m in Sources */,
 				78AC314419F23C810005ADDE /* main.m in Sources */,
 				7856363419F25540002C625E /* RFWork.m in Sources */,
+				7856364119F25FD9002C625E /* RasUIKit.m in Sources */,
 				7856363119F25540002C625E /* RFUILockView.m in Sources */,
+				7856364B19F26136002C625E /* RasDataMgr.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
