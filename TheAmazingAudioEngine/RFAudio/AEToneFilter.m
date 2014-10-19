@@ -82,7 +82,7 @@ static OSStatus filterCallback(id                        filter,
 		
 		vDSP_vflt16(buffer, 1, fbuf, 1, frames);
 		
-		// 算法效果不好
+		// 算法效果不好，性能问题
 		float frequency = 0.0f;
 		smb2PitchShift(THIS->_frequency, frames, 128, 4, audioController.audioDescription.mSampleRate, fbuf, fbuf, setup, &frequency);
 		

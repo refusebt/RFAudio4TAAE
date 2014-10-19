@@ -65,53 +65,72 @@
 	RasMusicSelectViewController *selectCtrl = [[RasMusicSelectViewController alloc] initWithNibName:@"RasMusicSelectViewController" bundle:nil];
 	selectCtrl.finish = ^(RasTrackInfo *ti){
 		[self resetAudioController];
-		if (ti == nil)
+		if (ti != nil)
 		{
-			return;
+			AVURLAsset *assert = [ti assert];
+			if (assert != nil)
+			{
+				[AEWaveImageGenerator waveImageWithAssert:assert
+													 size:CGSizeMake(1920, 90)
+													color:[UIColor redColor]
+											  isHeightMax:YES
+													start:^(AEWaveImageGenerator *generator){
+														[SVProgressHUD showWithStatus:@"Loading" maskType:SVProgressHUDMaskTypeGradient];
+													}
+												   finish:^(AEWaveImageGenerator *generator){
+													   [SVProgressHUD dismiss];
+													   self.imgViewBgWave.image = generator.waveImage;
+												   }
+				 ];
+				return;
+			}
 		}
-		AVPlayerItem *playerItem = [ti avPlayerItem];
-		if (playerItem == nil)
-		{
-			return;
-		}
-
-		self.audioController = [[AEAudioController alloc] initWithAudioDescription:[AEAudioController nonInterleaved16BitStereoAudioDescription] inputEnabled:YES];
+		self.imgViewBgWave.image = nil;
+		
+//		AVPlayerItem *playerItem = [ti avPlayerItem];
+//		if (playerItem == nil)
+//		{
+//			return;
+//		}
+//
+////		self.audioController = [[AEAudioController alloc] initWithAudioDescription:[AEAudioController nonInterleaved16BitStereoAudioDescription] inputEnabled:YES];
 //		self.audioController = [[AEAudioController alloc] initGenericOutputWithAudioDescription:[AEAudioController nonInterleaved16BitStereoAudioDescription]];
-		_audioController.preferredBufferDuration = 0.005;
-		_audioController.useMeasurementMode = YES;
-		
-		AEAvPlayerItemPlayer *player = [[AEAvPlayerItemPlayer alloc] initWithWithItem:playerItem audioController:self.audioController];
-		[player prepareWithProgress:
-		 ^(NSTimeInterval currentTime, NSTimeInterval duration){
-			 NSLog(@"%f:%f", currentTime, duration);
-		 }
-							 finish:
-		 ^(){
-			 NSLog(@"%@ finish", player);
-		 }];
-		
-		player.volume = 1.0;
-		player.channelIsPlaying = YES;
-		player.channelIsMuted = NO;
-		
-		AEChannelGroupRef group = [_audioController createChannelGroup];
-		[_audioController addChannels:[NSArray arrayWithObjects:player, nil] toChannelGroup:group];
-		
+//		_audioController.preferredBufferDuration = 0.005;
+//		_audioController.useMeasurementMode = YES;
+//		
+//		AEAvPlayerItemPlayer *player = [[AEAvPlayerItemPlayer alloc] initWithWithItem:playerItem audioController:self.audioController];
+//		[player prepareWithProgress:
+//		 ^(NSTimeInterval currentTime, NSTimeInterval duration){
+//			 
+//		 }
+//							 finish:
+//		 ^(){
+//			 NSLog(@"%@ finish", player);
+//		 }];
+//		
+//		player.volume = 1.0;
+//		player.channelIsPlaying = YES;
+//		player.channelIsMuted = NO;
+//		
+//		AEChannelGroupRef group = [_audioController createChannelGroup];
+//		[_audioController addChannels:[NSArray arrayWithObjects:player, nil] toChannelGroup:group];
+//		
 //		AEWaveImageGenerator *generator = [[AEWaveImageGenerator alloc] initWithAudioController:self.audioController width:1920 height:90 duration:player.duration color:[UIColor redColor]];
+//		generator.isHeightMax = YES;
 //		generator.finish = ^(UIImage *image){
 //			self.imgViewBgWave.image = image;
 //		};
 //		[_audioController addOutputReceiver:generator];
-		
-		AEToneFilter *up = [[AEToneFilter alloc] init];
-		[_audioController addFilter:up];
-		
-		NSError *error = nil;
-		[self.audioController start:&error];
-		if (error != nil)
-		{
-			NSLog(@"%@", error);
-		}
+//		
+////		AEToneFilter *up = [[AEToneFilter alloc] init];
+////		[_audioController addFilter:up];
+//		
+//		NSError *error = nil;
+//		[self.audioController start:&error];
+//		if (error != nil)
+//		{
+//			NSLog(@"%@", error);
+//		}
 	};
 	[self presentViewController:[RasUIKit navCtrlWithRootCtrl:selectCtrl] animated:YES];
 }
