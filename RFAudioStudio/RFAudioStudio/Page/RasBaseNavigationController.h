@@ -1,5 +1,5 @@
 //
-//  RasBaseNavigationControllerViewController.h
+//  RasBaseNavigationController.h
 //  RFAudioStudio
 //
 //  Created by gouzhehua on 14-10-18.
@@ -8,6 +8,6 @@
 
 #import "RFBaseNavigationController.h"
 
-@interface RasBaseNavigationControllerViewController : RFBaseNavigationController
+@interface RasBaseNavigationController : RFBaseNavigationController
 
 @end

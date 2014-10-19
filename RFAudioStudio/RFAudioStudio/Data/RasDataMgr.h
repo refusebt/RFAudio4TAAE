@@ -9,5 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface RasDataMgr : NSObject
+{
+
+}
+
+- (void)load;
+- (void)save;
+
++ (RasDataMgr *)shared;
 
 @end

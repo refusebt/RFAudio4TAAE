@@ -1,14 +1,18 @@
 //
-//  RasBaseViewController.m
+//  RasBaseNavigationController.m
 //  RFAudioStudio
 //
 //  Created by gouzhehua on 14-10-18.
 //  Copyright (c) 2014年 TechAtk. All rights reserved.
 //
 
-#import "RasBaseViewController.h"
+#import "RasBaseNavigationController.h"
 
-@implementation RasBaseViewController
+@interface RasBaseNavigationController ()
+
+@end
+
+@implementation RasBaseNavigationController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

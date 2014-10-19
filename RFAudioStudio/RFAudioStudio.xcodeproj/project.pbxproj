@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7821185619F2A61A00B122A0 /* RasMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7821185419F2A61A00B122A0 /* RasMainViewController.m */; };
+		7821185719F2A61A00B122A0 /* RasMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7821185519F2A61A00B122A0 /* RasMainViewController.xib */; };
+		7821185B19F2A90300B122A0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7821185A19F2A90300B122A0 /* Default-568h@2x.png */; };
+		7821185E19F2ABD800B122A0 /* RasBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7821185D19F2ABD800B122A0 /* RasBaseNavigationController.m */; };
+		7821186219F2AC9200B122A0 /* RasRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7821186019F2AC9200B122A0 /* RasRecordViewController.m */; };
+		7821186319F2AC9200B122A0 /* RasRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7821186119F2AC9200B122A0 /* RasRecordViewController.xib */; };
+		7821186719F2ACC800B122A0 /* RasMixerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7821186519F2ACC800B122A0 /* RasMixerViewController.m */; };
+		7821186819F2ACC800B122A0 /* RasMixerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7821186619F2ACC800B122A0 /* RasMixerViewController.xib */; };
 		7856353519F23D13002C625E /* libTheAmazingAudioEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7856353419F23D13002C625E /* libTheAmazingAudioEngine.a */; };
 		7856353719F23D2D002C625E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7856353619F23D2D002C625E /* AVFoundation.framework */; };
 		7856353919F23D36002C625E /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7856353819F23D36002C625E /* Accelerate.framework */; };
@@ -54,14 +62,30 @@
 		7856363E19F25FCA002C625E /* RasKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7856363D19F25FCA002C625E /* RasKit.m */; };
 		7856364119F25FD9002C625E /* RasUIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7856364019F25FD9002C625E /* RasUIKit.m */; };
 		7856364B19F26136002C625E /* RasDataMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 7856364A19F26136002C625E /* RasDataMgr.m */; };
-		7856365019F26167002C625E /* RasBaseNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7856364D19F26167002C625E /* RasBaseNavigationControllerViewController.m */; };
 		7856365119F26167002C625E /* RasBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7856364F19F26167002C625E /* RasBaseViewController.m */; };
 		7856365419F2618B002C625E /* RasWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 7856365319F2618B002C625E /* RasWork.m */; };
+		7894358C19F3588300E5BCAC /* RasMusicSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7894358A19F3588300E5BCAC /* RasMusicSelectViewController.m */; };
+		7894358D19F3588300E5BCAC /* RasMusicSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7894358B19F3588300E5BCAC /* RasMusicSelectViewController.xib */; };
 		78AC314419F23C810005ADDE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AC314319F23C810005ADDE /* main.m */; };
 		78AC314719F23C810005ADDE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AC314619F23C810005ADDE /* AppDelegate.m */; };
+		78E6EE2B19F360CF0070CD24 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6EE2919F360CF0070CD24 /* MediaPlayer.framework */; };
+		78E6EE2C19F360CF0070CD24 /* MediaToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6EE2A19F360CF0070CD24 /* MediaToolbox.framework */; };
+		78E6EE3119F3C96E0070CD24 /* RasTrackInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6EE3019F3C96E0070CD24 /* RasTrackInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7821185319F2A61A00B122A0 /* RasMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasMainViewController.h; sourceTree = "<group>"; };
+		7821185419F2A61A00B122A0 /* RasMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RasMainViewController.m; sourceTree = "<group>"; };
+		7821185519F2A61A00B122A0 /* RasMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RasMainViewController.xib; sourceTree = "<group>"; };
+		7821185A19F2A90300B122A0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		7821185C19F2ABD800B122A0 /* RasBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasBaseNavigationController.h; sourceTree = "<group>"; };
+		7821185D19F2ABD800B122A0 /* RasBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RasBaseNavigationController.m; sourceTree = "<group>"; };
+		7821185F19F2AC9200B122A0 /* RasRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasRecordViewController.h; sourceTree = "<group>"; };
+		7821186019F2AC9200B122A0 /* RasRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RasRecordViewController.m; sourceTree = "<group>"; };
+		7821186119F2AC9200B122A0 /* RasRecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RasRecordViewController.xib; sourceTree = "<group>"; };
+		7821186419F2ACC800B122A0 /* RasMixerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasMixerViewController.h; sourceTree = "<group>"; };
+		7821186519F2ACC800B122A0 /* RasMixerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RasMixerViewController.m; sourceTree = "<group>"; };
+		7821186619F2ACC800B122A0 /* RasMixerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RasMixerViewController.xib; sourceTree = "<group>"; };
 		7856353419F23D13002C625E /* libTheAmazingAudioEngine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTheAmazingAudioEngine.a; path = "../../DerivedData/RFAudio4TAAE/Build/Products/Debug-iphoneos/libTheAmazingAudioEngine.a"; sourceTree = "<group>"; };
 		7856353619F23D2D002C625E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		7856353819F23D36002C625E /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -153,16 +177,21 @@
 		7856364219F2601A002C625E /* LocalString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalString.h; sourceTree = "<group>"; };
 		7856364919F26136002C625E /* RasDataMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasDataMgr.h; sourceTree = "<group>"; };
 		7856364A19F26136002C625E /* RasDataMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RasDataMgr.m; sourceTree = "<group>"; };
-		7856364C19F26167002C625E /* RasBaseNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasBaseNavigationControllerViewController.h; sourceTree = "<group>"; };
-		7856364D19F26167002C625E /* RasBaseNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RasBaseNavigationControllerViewController.m; sourceTree = "<group>"; };
 		7856364E19F26167002C625E /* RasBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasBaseViewController.h; sourceTree = "<group>"; };
 		7856364F19F26167002C625E /* RasBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RasBaseViewController.m; sourceTree = "<group>"; };
 		7856365219F2618B002C625E /* RasWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasWork.h; sourceTree = "<group>"; };
 		7856365319F2618B002C625E /* RasWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RasWork.m; sourceTree = "<group>"; };
+		7894358919F3588300E5BCAC /* RasMusicSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasMusicSelectViewController.h; sourceTree = "<group>"; };
+		7894358A19F3588300E5BCAC /* RasMusicSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RasMusicSelectViewController.m; sourceTree = "<group>"; };
+		7894358B19F3588300E5BCAC /* RasMusicSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RasMusicSelectViewController.xib; sourceTree = "<group>"; };
 		78AC313E19F23C810005ADDE /* RFAudioStudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RFAudioStudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78AC314319F23C810005ADDE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		78AC314519F23C810005ADDE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		78AC314619F23C810005ADDE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		78E6EE2919F360CF0070CD24 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		78E6EE2A19F360CF0070CD24 /* MediaToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaToolbox.framework; path = System/Library/Frameworks/MediaToolbox.framework; sourceTree = SDKROOT; };
+		78E6EE2F19F3C96E0070CD24 /* RasTrackInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasTrackInfo.h; sourceTree = "<group>"; };
+		78E6EE3019F3C96E0070CD24 /* RasTrackInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RasTrackInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +199,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78E6EE2B19F360CF0070CD24 /* MediaPlayer.framework in Frameworks */,
+				78E6EE2C19F360CF0070CD24 /* MediaToolbox.framework in Frameworks */,
 				7856354719F23D72002C625E /* CoreGraphics.framework in Frameworks */,
 				7856354519F23D61002C625E /* Foundation.framework in Frameworks */,
 				7856353719F23D2D002C625E /* AVFoundation.framework in Frameworks */,
@@ -188,6 +219,8 @@
 		7856354819F23DA3002C625E /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				78E6EE2919F360CF0070CD24 /* MediaPlayer.framework */,
+				78E6EE2A19F360CF0070CD24 /* MediaToolbox.framework */,
 				7856354619F23D72002C625E /* CoreGraphics.framework */,
 				7856354419F23D61002C625E /* Foundation.framework */,
 				7856354219F23D53002C625E /* UIKit.framework */,
@@ -205,13 +238,13 @@
 			isa = PBXGroup;
 			children = (
 				785635B819F253BB002C625E /* Audio */,
-				785635B919F253BB002C625E /* InfoPlist.strings */,
-				785635BB19F253BB002C625E /* Localizable.strings */,
 				785635BD19F253BB002C625E /* Images */,
 				785635BE19F253BB002C625E /* Images.xcassets */,
-				785635BF19F253BB002C625E /* Info.plist */,
-				785635C019F253BB002C625E /* multi-language.xls */,
+				785635B919F253BB002C625E /* InfoPlist.strings */,
+				785635BB19F253BB002C625E /* Localizable.strings */,
 				7856364219F2601A002C625E /* LocalString.h */,
+				785635C019F253BB002C625E /* multi-language.xls */,
+				785635BF19F253BB002C625E /* Info.plist */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -226,6 +259,7 @@
 		785635BD19F253BB002C625E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7821185A19F2A90300B122A0 /* Default-568h@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -332,6 +366,8 @@
 			children = (
 				7856364919F26136002C625E /* RasDataMgr.h */,
 				7856364A19F26136002C625E /* RasDataMgr.m */,
+				78E6EE2F19F3C96E0070CD24 /* RasTrackInfo.h */,
+				78E6EE3019F3C96E0070CD24 /* RasTrackInfo.m */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -339,10 +375,22 @@
 		7856363819F25949002C625E /* Page */ = {
 			isa = PBXGroup;
 			children = (
-				7856364C19F26167002C625E /* RasBaseNavigationControllerViewController.h */,
-				7856364D19F26167002C625E /* RasBaseNavigationControllerViewController.m */,
 				7856364E19F26167002C625E /* RasBaseViewController.h */,
 				7856364F19F26167002C625E /* RasBaseViewController.m */,
+				7821185C19F2ABD800B122A0 /* RasBaseNavigationController.h */,
+				7821185D19F2ABD800B122A0 /* RasBaseNavigationController.m */,
+				7821185319F2A61A00B122A0 /* RasMainViewController.h */,
+				7821185419F2A61A00B122A0 /* RasMainViewController.m */,
+				7821185519F2A61A00B122A0 /* RasMainViewController.xib */,
+				7821185F19F2AC9200B122A0 /* RasRecordViewController.h */,
+				7821186019F2AC9200B122A0 /* RasRecordViewController.m */,
+				7821186119F2AC9200B122A0 /* RasRecordViewController.xib */,
+				7821186419F2ACC800B122A0 /* RasMixerViewController.h */,
+				7821186519F2ACC800B122A0 /* RasMixerViewController.m */,
+				7821186619F2ACC800B122A0 /* RasMixerViewController.xib */,
+				7894358919F3588300E5BCAC /* RasMusicSelectViewController.h */,
+				7894358A19F3588300E5BCAC /* RasMusicSelectViewController.m */,
+				7894358B19F3588300E5BCAC /* RasMusicSelectViewController.xib */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -418,6 +466,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 78AC316119F23C810005ADDE /* Build configuration list for PBXNativeTarget "RFAudioStudio" */;
 			buildPhases = (
+				7856367819F2A557002C625E /* Update Build Version */,
 				78AC313A19F23C810005ADDE /* Sources */,
 				78AC313B19F23C810005ADDE /* Frameworks */,
 				78AC313C19F23C810005ADDE /* Resources */,
@@ -472,11 +521,33 @@
 				7856361619F25540002C625E /* SVProgressHUD.bundle in Resources */,
 				785635C719F253BB002C625E /* Images.xcassets in Resources */,
 				785635C619F253BB002C625E /* Localizable.strings in Resources */,
+				7894358D19F3588300E5BCAC /* RasMusicSelectViewController.xib in Resources */,
+				7821185719F2A61A00B122A0 /* RasMainViewController.xib in Resources */,
+				7821186819F2ACC800B122A0 /* RasMixerViewController.xib in Resources */,
+				7821186319F2AC9200B122A0 /* RasRecordViewController.xib in Resources */,
 				785635C519F253BB002C625E /* InfoPlist.strings in Resources */,
+				7821185B19F2A90300B122A0 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7856367819F2A557002C625E /* Update Build Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Update Build Version";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ]; then\npath=\"$(pwd)/${INFOPLIST_FILE}\"\nbuild=$(defaults read $path CFBundleVersion)\nplutil -replace CFBundleVersion -string $((build+1)) $path\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		78AC313A19F23C810005ADDE /* Sources */ = {
@@ -493,7 +564,9 @@
 				7856362019F25540002C625E /* RFBaseTabBarController.m in Sources */,
 				7856361C19F25540002C625E /* RFActionSheet.m in Sources */,
 				7856362C19F25540002C625E /* RFStorageKit.m in Sources */,
+				7894358C19F3588300E5BCAC /* RasMusicSelectViewController.m in Sources */,
 				7856362819F25540002C625E /* RFImageWork.m in Sources */,
+				78E6EE3119F3C96E0070CD24 /* RasTrackInfo.m in Sources */,
 				7856361F19F25540002C625E /* RFBaseNavigationController.m in Sources */,
 				78AC314719F23C810005ADDE /* AppDelegate.m in Sources */,
 				7856362219F25540002C625E /* RFCmdBaseRequest.m in Sources */,
@@ -501,16 +574,18 @@
 				7856363619F25540002C625E /* UIImageView+RFImageWork.m in Sources */,
 				7856361719F25540002C625E /* SVProgressHUD.m in Sources */,
 				7856361D19F25540002C625E /* RFAlertView.m in Sources */,
+				7821186719F2ACC800B122A0 /* RasMixerViewController.m in Sources */,
 				7856362419F25540002C625E /* RFCmdConfig.m in Sources */,
 				7856363219F25540002C625E /* RFUITextField.m in Sources */,
 				7856362F19F25540002C625E /* RFUIKit.m in Sources */,
+				7821185E19F2ABD800B122A0 /* RasBaseNavigationController.m in Sources */,
 				7856362A19F25540002C625E /* RFNetworkKit.m in Sources */,
-				7856365019F26167002C625E /* RasBaseNavigationControllerViewController.m in Sources */,
 				7856362319F25540002C625E /* RFCmdBgRequest.m in Sources */,
 				7856362E19F25540002C625E /* RFUICountDownButton.m in Sources */,
 				7856362719F25540002C625E /* RFColor.m in Sources */,
 				7856363E19F25FCA002C625E /* RasKit.m in Sources */,
 				7856363319F25540002C625E /* RFUITextView.m in Sources */,
+				7821185619F2A61A00B122A0 /* RasMainViewController.m in Sources */,
 				7856362B19F25540002C625E /* RFRequestWork.m in Sources */,
 				7856362519F25540002C625E /* RFCmdRequest.m in Sources */,
 				7856363019F25540002C625E /* RFUILoadingView.m in Sources */,
@@ -522,6 +597,7 @@
 				7856364119F25FD9002C625E /* RasUIKit.m in Sources */,
 				7856363119F25540002C625E /* RFUILockView.m in Sources */,
 				7856364B19F26136002C625E /* RasDataMgr.m in Sources */,
+				7821186219F2AC9200B122A0 /* RasRecordViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,10 +661,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "f96f2916-d447-4222-9b3c-c46ad7a8ac62";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -623,7 +697,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -633,6 +706,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RFAudioStudio/Prefix.pch;
@@ -649,6 +723,7 @@
 					"${BUILT_PRODUCTS_DIR}",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -657,6 +732,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RFAudioStudio/Prefix.pch;
@@ -673,6 +749,7 @@
 					"${BUILT_PRODUCTS_DIR}",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

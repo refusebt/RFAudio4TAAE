@@ -10,4 +10,14 @@
 
 @interface RasUIKit : NSObject
 
++ (void)setRootCtrl:(UIViewController *)rootCtrl;
++ (UIViewController *)rootCtrl;
+
++ (RasBaseNavigationController *)navCtrlWithRootCtrl:(UIViewController *)rootCtrl;
+
++ (void)rootPresentViewController:(UIViewController *)viewController;
++ (void)rootPresentViewController:(UIViewController *)viewController statusBarStyle:(UIStatusBarStyle)statusBarStyle;
+
++ (UIBarButtonItem *)barBtnWithTitle:(NSString *)aTitle target:(id)aTarget action:(SEL)aSelector;
+
 @end

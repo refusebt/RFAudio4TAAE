@@ -36,7 +36,7 @@ static OSStatus filterCallback(id                        filter,
 	
 	_theta = 0.0f;
 	_sampleRate = 44100.0f;
-	_frequency = 2.0f;
+	_frequency = 1.0f;
 	
     return self;
 }
@@ -61,29 +61,33 @@ static OSStatus filterCallback(id                        filter,
 {
     OSStatus status = producer(producerToken, audio, &frames);
     if ( status != noErr ) return status;
-    
-	const int size = 512;
+	
 	static vDSP_Length n = 0;
 	static FFTSetup setup = NULL;
-	float frequency = 0.0f;
 	
 	if (setup == NULL)
 	{
-		n = log2f( ( float) size );
+		n = log2f( ( float) frames );
 		setup = vDSP_create_fftsetup(n, FFT_RADIX2);
 	}
 	
 	AEToneFilter *THIS = filter;
-	const int channel = 0;
-	int16_t *buffer = (int16_t *)audio->mBuffers[channel].mData;
-	float fbuf[512];
-	
-	memset(fbuf, 0, sizeof(fbuf));
-	vDSP_vflt16(buffer, 1, fbuf, 1, 512);
-	
-	smb2PitchShift(THIS->_frequency, frames, 128, 4, THIS->_sampleRate, fbuf, fbuf, setup, &frequency);
-	
-	vDSP_vfix16(fbuf, 1, buffer, 1, 512);
+	for (NSInteger i = 0; i < audio->mNumberBuffers; i++)
+	{
+		AudioBuffer audioBuffer = audio->mBuffers[i];
+		int16_t *buffer = (int16_t *)audioBuffer.mData;
+		float fbuf[frames];
+		
+		memset(fbuf, 0, frames*sizeof(float));
+		
+		vDSP_vflt16(buffer, 1, fbuf, 1, frames);
+		
+		// 算法效果不好
+		float frequency = 0.0f;
+		smb2PitchShift(THIS->_frequency, frames, 128, 4, audioController.audioDescription.mSampleRate, fbuf, fbuf, setup, &frequency);
+		
+		vDSP_vfix16(fbuf, 1, buffer, 1, frames);
+	}
 	
     return noErr;
 }

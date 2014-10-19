@@ -43,6 +43,13 @@ extern "C" {
 #import "AEBlockScheduler.h"
 #import "AEUtilities.h"
 
+// AS RFAudio For TAAE GZH 20141019
+#import "AEAssetReader.h"
+#import "AEAvPlayerItemPlayer.h"
+#import "AEOutputConvert.h"
+#import "AEOutputConvertWriter.h"
+// AE RFAudio For TAAE GZH 20141019
+	
 /*!
 @mainpage
  

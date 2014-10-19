@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RFAppDelegate.h"
+#import "RasMainViewController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : RFAppDelegate
+{
 
-@property (strong, nonatomic) UIWindow *window;
-
+}
+@property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, strong) RasMainViewController *rootCtrl;
 
 @end
 

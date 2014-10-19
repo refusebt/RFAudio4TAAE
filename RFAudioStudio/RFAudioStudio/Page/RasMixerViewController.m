@@ -1,14 +1,18 @@
 //
-//  RasBaseViewController.m
+//  MixerViewController.m
 //  RFAudioStudio
 //
 //  Created by gouzhehua on 14-10-18.
 //  Copyright (c) 2014年 TechAtk. All rights reserved.
 //
 
-#import "RasBaseViewController.h"
+#import "RasMixerViewController.h"
 
-@implementation RasBaseViewController
+@interface RasMixerViewController ()
+
+@end
+
+@implementation RasMixerViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -24,6 +28,8 @@
 {
 	[super viewDidLoad];
 	// Do any additional setup after loading the view from its nib.
+	
+	
 }
 
 - (void)viewDidAppear:(BOOL)animated

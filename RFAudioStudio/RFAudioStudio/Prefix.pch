@@ -11,14 +11,17 @@
 #endif
 
 #ifdef __OBJC__
-	#import <UIKit/UIKit.h>
 	#import <Foundation/Foundation.h>
+	#import <UIKit/UIKit.h>
 
 	#import "RF.h"
 
 	#import "Define.h"
+	#import "RasBaseViewController.h"
+	#import "RasBaseNavigationController.h"
 	#import "RasKit.h"
 	#import "RasUIKit.h"
+
 #endif
 
 //#ifndef __OPTIMIZE__
