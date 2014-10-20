@@ -321,10 +321,7 @@
 				);
 				INFOPLIST_FILE = "TheEngineSample/TheEngineSample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"${BUILT_PRODUCTS_DIR}",
-					"/Users/9sky/Documents/KingCloud/快盘/!Now/RFAudio4TAAE/DerivedData/RFAudio4TAAE/Build/Products/Debug-iphoneos",
-				);
+				LIBRARY_SEARCH_PATHS = "${BUILT_PRODUCTS_DIR}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "f96f2916-d447-4222-9b3c-c46ad7a8ac62";
 				WRAPPER_EXTENSION = app;
@@ -345,10 +342,7 @@
 				);
 				INFOPLIST_FILE = "TheEngineSample/TheEngineSample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"${BUILT_PRODUCTS_DIR}",
-					"/Users/9sky/Documents/KingCloud/快盘/!Now/RFAudio4TAAE/DerivedData/RFAudio4TAAE/Build/Products/Debug-iphoneos",
-				);
+				LIBRARY_SEARCH_PATHS = "${BUILT_PRODUCTS_DIR}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "f96f2916-d447-4222-9b3c-c46ad7a8ac62";
 				WRAPPER_EXTENSION = app;

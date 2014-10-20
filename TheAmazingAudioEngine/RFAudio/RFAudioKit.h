@@ -14,9 +14,9 @@
 @class AudioKit;
 
 #ifdef __OPTIMIZE__
-	#define SKY_OSS_AUDIO(error)	error
+	#define RF_OSS_AUDIO(error)	error
 #else
-	#define SKY_OSS_AUDIO(error)	[AudioKit SkyOSStatusAudioWithError:error file:__FILE__ lineNo:__LINE__]
+	#define RF_OSS_AUDIO(error)	[AudioKit SkyOSStatusAudioWithError:error file:__FILE__ lineNo:__LINE__]
 #endif
 
 @interface RFAudioKit : NSObject

@@ -68,6 +68,8 @@
 		7894358D19F3588300E5BCAC /* RasMusicSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7894358B19F3588300E5BCAC /* RasMusicSelectViewController.xib */; };
 		78AC314419F23C810005ADDE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AC314319F23C810005ADDE /* main.m */; };
 		78AC314719F23C810005ADDE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AC314619F23C810005ADDE /* AppDelegate.m */; };
+		78DFCA7419F4F4ED00741F04 /* RasSliderControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DFCA7319F4F4ED00741F04 /* RasSliderControl.m */; };
+		78DFCA7719F4F4FE00741F04 /* RasTrackEditorControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DFCA7619F4F4FE00741F04 /* RasTrackEditorControl.m */; };
 		78E6EE2B19F360CF0070CD24 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6EE2919F360CF0070CD24 /* MediaPlayer.framework */; };
 		78E6EE2C19F360CF0070CD24 /* MediaToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6EE2A19F360CF0070CD24 /* MediaToolbox.framework */; };
 		78E6EE3119F3C96E0070CD24 /* RasTrackInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6EE3019F3C96E0070CD24 /* RasTrackInfo.m */; };
@@ -188,6 +190,10 @@
 		78AC314319F23C810005ADDE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		78AC314519F23C810005ADDE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		78AC314619F23C810005ADDE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		78DFCA7219F4F4ED00741F04 /* RasSliderControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasSliderControl.h; sourceTree = "<group>"; };
+		78DFCA7319F4F4ED00741F04 /* RasSliderControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RasSliderControl.m; sourceTree = "<group>"; };
+		78DFCA7519F4F4FE00741F04 /* RasTrackEditorControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasTrackEditorControl.h; sourceTree = "<group>"; };
+		78DFCA7619F4F4FE00741F04 /* RasTrackEditorControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RasTrackEditorControl.m; sourceTree = "<group>"; };
 		78E6EE2919F360CF0070CD24 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		78E6EE2A19F360CF0070CD24 /* MediaToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaToolbox.framework; path = System/Library/Frameworks/MediaToolbox.framework; sourceTree = SDKROOT; };
 		78E6EE2F19F3C96E0070CD24 /* RasTrackInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasTrackInfo.h; sourceTree = "<group>"; };
@@ -437,6 +443,7 @@
 			children = (
 				7856363719F25949002C625E /* Data */,
 				7856363819F25949002C625E /* Page */,
+				78DFCA6B19F4DD5500741F04 /* Control */,
 				7856363919F25949002C625E /* Public */,
 				7856363A19F25949002C625E /* Work */,
 				785635CC19F25540002C625E /* RF */,
@@ -457,6 +464,17 @@
 				78AC314319F23C810005ADDE /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		78DFCA6B19F4DD5500741F04 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				78DFCA7519F4F4FE00741F04 /* RasTrackEditorControl.h */,
+				78DFCA7619F4F4FE00741F04 /* RasTrackEditorControl.m */,
+				78DFCA7219F4F4ED00741F04 /* RasSliderControl.h */,
+				78DFCA7319F4F4ED00741F04 /* RasSliderControl.m */,
+			);
+			path = Control;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -561,6 +579,7 @@
 				7856365119F26167002C625E /* RasBaseViewController.m in Sources */,
 				7856365419F2618B002C625E /* RasWork.m in Sources */,
 				7856362619F25540002C625E /* RFCmdResult.m in Sources */,
+				78DFCA7419F4F4ED00741F04 /* RasSliderControl.m in Sources */,
 				7856362019F25540002C625E /* RFBaseTabBarController.m in Sources */,
 				7856361C19F25540002C625E /* RFActionSheet.m in Sources */,
 				7856362C19F25540002C625E /* RFStorageKit.m in Sources */,
@@ -572,6 +591,7 @@
 				7856362219F25540002C625E /* RFCmdBaseRequest.m in Sources */,
 				7856362D19F25540002C625E /* RFTelephone.m in Sources */,
 				7856363619F25540002C625E /* UIImageView+RFImageWork.m in Sources */,
+				78DFCA7719F4F4FE00741F04 /* RasTrackEditorControl.m in Sources */,
 				7856361719F25540002C625E /* SVProgressHUD.m in Sources */,
 				7856361D19F25540002C625E /* RFAlertView.m in Sources */,
 				7821186719F2ACC800B122A0 /* RasMixerViewController.m in Sources */,
@@ -712,14 +732,12 @@
 				GCC_PREFIX_HEADER = RFAudioStudio/Prefix.pch;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"${BUILT_PRODUCTS_DIR}",
 				);
 				INFOPLIST_FILE = RFAudioStudio/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/9sky/Documents/KingCloud/快盘/!Now/RFAudio4TAAE/DerivedData/RFAudio4TAAE/Build/Products/Debug-iphoneos",
 					"${BUILT_PRODUCTS_DIR}",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -738,14 +756,12 @@
 				GCC_PREFIX_HEADER = RFAudioStudio/Prefix.pch;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"${BUILT_PRODUCTS_DIR}",
 				);
 				INFOPLIST_FILE = RFAudioStudio/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/9sky/Documents/KingCloud/快盘/!Now/RFAudio4TAAE/DerivedData/RFAudio4TAAE/Build/Products/Debug-iphoneos",
 					"${BUILT_PRODUCTS_DIR}",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
