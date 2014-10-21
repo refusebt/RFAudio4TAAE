@@ -32,6 +32,12 @@
 		_lmtEndX = 0;
 		_lmtStartY = 0;
 		_lmtEndY = 0;
+		
+		self.backgroundColor = [UIColor clearColor];
+		UIView *viewBlock = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+		viewBlock.center = self.center;
+		[viewBlock borderRed];
+		[self addSubview:viewBlock];
 	}
 	return self;
 }

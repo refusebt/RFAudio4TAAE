@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6245"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RasMixerViewController">
@@ -14,30 +14,10 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="whS-0s-6QQ" customClass="RasTrackEditorControl">
-                    <rect key="frame" x="8" y="72" width="304" height="80"/>
-                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="80" id="SuG-Vg-mpm"/>
-                    </constraints>
-                </view>
-            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="whS-0s-6QQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="72" id="2SJ-wf-OWe"/>
-                <constraint firstItem="whS-0s-6QQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="FqG-MQ-FUw"/>
-                <constraint firstAttribute="trailing" secondItem="whS-0s-6QQ" secondAttribute="trailing" id="cX5-eh-UpM"/>
-                <constraint firstAttribute="trailing" secondItem="whS-0s-6QQ" secondAttribute="trailing" constant="8" id="fGK-TF-lRg"/>
-            </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="cX5-eh-UpM"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="-114" y="61"/>
         </view>
     </objects>

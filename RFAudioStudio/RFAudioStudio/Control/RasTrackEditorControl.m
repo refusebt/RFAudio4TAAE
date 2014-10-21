@@ -94,11 +94,35 @@
 	_lbStatus.userInteractionEnabled = NO;
 	[self addSubview:_lbStatus];
 	
-	self.topLeftSlider.backgroundColor = [UIColor redColor];
-	self.topRightSlider.backgroundColor = [UIColor yellowColor];
-	self.bottomLeftSlider.backgroundColor = [UIColor orangeColor];
-	self.bottomRightSlider.backgroundColor = [UIColor purpleColor];
-	_duration = 60+42.2;
+	_topLeftSlider.hidden = YES;
+	_topRightSlider.hidden = YES;
+	_bottomLeftSlider.hidden = YES;
+	_bottomRightSlider.hidden = YES;
+	_imgViewRange.hidden = YES;
+}
+
+- (void)bindWithImage:(UIImage *)image duration:(NSTimeInterval)duration
+{
+	_imgViewWave.image = image;
+	_duration = duration;
+	
+	_topLeftSlider.hidden = NO;
+	_topRightSlider.hidden = NO;
+	_bottomLeftSlider.hidden = NO;
+	_bottomRightSlider.hidden = NO;
+	_imgViewRange.hidden = NO;
+	
+	_topLeftSlider.center = CGPointMake(_sx, _sy);
+	[_topLeftSlider setLimtStartX:_sx endX:_ex startY:_sy endY:_sy];
+	
+	_topRightSlider.center = CGPointMake(_ex, _sy);
+	[_topRightSlider setLimtStartX:_sx endX:_ex startY:_sy endY:_sy];
+	
+	_bottomLeftSlider.center = CGPointMake(_sx, _ey);
+	[_bottomLeftSlider setLimtStartX:_sx endX:_ex startY:_ey endY:_ey];
+	
+	_bottomRightSlider.center = CGPointMake(_ex, _ey);
+	[_bottomRightSlider setLimtStartX:_sx endX:_ex startY:_ey endY:_ey];
 	
 	[self drawRange];
 }
@@ -127,7 +151,7 @@
 //	CGContextSetLineWidth(context, 1);
 //	CGContextSetLineCap(context, kCGLineCapRound);
 //	[RGBA2COLOR(255, 255, 155, 0.5) set];
-	[RGBA2COLOR(255, 255, 155, 0.5) setFill];
+	[RGBA2COLOR(255, 255, 155, 0.3) setFill];
 	
 	CGContextBeginPath(context);
 	
@@ -238,12 +262,22 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+	if (_duration <= 0)
+	{
+		return;
+	}
+	
 	UITouch *touch = [touches anyObject];
 	_start = [touch locationInView:self];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+	if (_duration <= 0)
+	{
+		return;
+	}
+	
 	UITouch *touch = [touches anyObject];
 	
 	CGPoint nowPoint = [touch locationInView:self];
@@ -293,11 +327,21 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+	if (_duration <= 0)
+	{
+		return;
+	}
+	
 	[self hideStatus];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
+	if (_duration <= 0)
+	{
+		return;
+	}
+	
 	[self hideStatus];
 }
 

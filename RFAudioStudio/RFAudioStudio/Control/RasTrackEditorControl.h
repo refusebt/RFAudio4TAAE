@@ -22,6 +22,8 @@
 @property (nonatomic, strong) RasSliderControl *bottomRightSlider;
 @property (nonatomic, assign) NSTimeInterval duration;
 
+- (void)bindWithImage:(UIImage *)image duration:(NSTimeInterval)duration;
+
 - (CGFloat)ratioWithSlider:(RasSliderControl *)slider;
 - (NSTimeInterval)timeWithSlider:(RasSliderControl *)slider;
 

@@ -7,6 +7,7 @@
 //
 
 #import "RasBaseViewController.h"
+#import "RasTrackEditorControl.h"
 
 @interface RasRecordViewController : RasBaseViewController
 {
@@ -19,7 +20,8 @@
 @property (nonatomic, strong) IBOutlet UIButton *btnFinish;
 @property (nonatomic, strong) IBOutlet UIButton *btnPlay;
 @property (nonatomic, strong) IBOutlet UIButton *btnSave;
-@property (nonatomic, strong) IBOutlet UIImageView *imgViewBgWave;
+@property (nonatomic, strong) IBOutlet RasTrackEditorControl *trackEditorBg;
+@property (nonatomic, strong) IBOutlet RasTrackEditorControl *trackEditorRecord;
 
 - (IBAction)btnMusic_Click:(id)sender;
 - (IBAction)btnReset_Click:(id)sender;

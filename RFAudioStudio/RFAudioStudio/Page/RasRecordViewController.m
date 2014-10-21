@@ -17,6 +17,7 @@
 
 }
 @property (nonatomic, strong) AEAudioController *audioController;
+@property (nonatomic, strong) RasTrackInfo *trackInfoBg;
 
 - (void)resetAudioController;
 
@@ -38,6 +39,8 @@
 {
 	[super viewDidLoad];
 	// Do any additional setup after loading the view from its nib.
+	
+	self.lbMusicTitle.text = @"No background";
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -64,14 +67,20 @@
 {
 	RasMusicSelectViewController *selectCtrl = [[RasMusicSelectViewController alloc] initWithNibName:@"RasMusicSelectViewController" bundle:nil];
 	selectCtrl.finish = ^(RasTrackInfo *ti){
+		self.trackInfoBg = ti;
 		[self resetAudioController];
 		if (ti != nil)
 		{
 			AVURLAsset *assert = [ti assert];
 			if (assert != nil)
 			{
+				self.lbMusicTitle.text = ti.name;
+				
+				CGSize size = self.trackEditorBg.frame.size;
+				size.width *= [UIScreen mainScreen].scale;
+				size.height *= [UIScreen mainScreen].scale;
 				[AEWaveImageGenerator waveImageWithAssert:assert
-													 size:CGSizeMake(640, 60)
+													 size:size
 													color:[UIColor redColor]
 											  isHeightMax:YES
 													start:^(AEWaveImageGenerator *generator){
@@ -79,13 +88,15 @@
 													}
 												   finish:^(AEWaveImageGenerator *generator){
 													   [SVProgressHUD dismiss];
-													   self.imgViewBgWave.image = generator.waveImage;
+													   NSTimeInterval duration = CMTimeGetSeconds(assert.duration);
+													   [self.trackEditorBg bindWithImage:generator.waveImage duration:duration];
 												   }
 				 ];
 				return;
 			}
 		}
-		self.imgViewBgWave.image = nil;
+		self.lbMusicTitle.text = @"No background";
+		self.trackEditorBg.imgViewWave.image = nil;
 		
 //		AVPlayerItem *playerItem = [ti avPlayerItem];
 //		if (playerItem == nil)
