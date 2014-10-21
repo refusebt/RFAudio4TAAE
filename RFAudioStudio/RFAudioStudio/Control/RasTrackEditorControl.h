@@ -14,6 +14,7 @@
 
 }
 @property (nonatomic, strong) UIImageView *imgViewWave;
+@property (nonatomic, strong) UIImageView *imgViewRange;
 @property (nonatomic, strong) RasSliderControl *topLeftSlider;
 @property (nonatomic, strong) RasSliderControl *topRightSlider;
 @property (nonatomic, strong) RasSliderControl *bottomLeftSlider;

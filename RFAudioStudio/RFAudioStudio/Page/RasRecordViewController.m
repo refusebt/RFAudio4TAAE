@@ -71,7 +71,7 @@
 			if (assert != nil)
 			{
 				[AEWaveImageGenerator waveImageWithAssert:assert
-													 size:CGSizeMake(1920, 90)
+													 size:CGSizeMake(640, 60)
 													color:[UIColor redColor]
 											  isHeightMax:YES
 													start:^(AEWaveImageGenerator *generator){

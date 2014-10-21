@@ -12,7 +12,6 @@
 {
 
 }
-@property (nonatomic, assign) CGPoint start;
 
 @end
 
@@ -22,18 +21,17 @@
 @synthesize lmtEndX = _lmtEndX;
 @synthesize lmtStartY = _lmtStartY;
 @synthesize lmtEndY = _lmtEndY;
+@synthesize delegate = _delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
 	self = [super initWithFrame:frame];
 	if (self)
 	{
-		self.backgroundColor = [UIColor redColor];
 		_lmtStartX = 0;
 		_lmtEndX = 0;
 		_lmtStartY = 0;
 		_lmtEndY = 0;
-		
 	}
 	return self;
 }
@@ -59,8 +57,8 @@
 	
 	CGPoint nowPoint = [touch locationInView:self];
 	
-	float offsetX = nowPoint.x - _start.x;
-	float offsetY = nowPoint.y - _start.y;
+	CGFloat offsetX = nowPoint.x - _start.x;
+	CGFloat offsetY = nowPoint.y - _start.y;
 	
 	CGPoint next = CGPointMake(self.center.x + offsetX, self.center.y + offsetY);
 	
@@ -83,6 +81,27 @@
 	}
 	
 	self.center = next;
+	
+	if (_delegate != nil)
+	{
+		[_delegate onSliderMove:self];
+	}
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	if (_delegate != nil)
+	{
+		[_delegate onSliderMoveEnd:self];
+	}
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	if (_delegate != nil)
+	{
+		[_delegate onSliderMoveEnd:self];
+	}
 }
 
 @end
