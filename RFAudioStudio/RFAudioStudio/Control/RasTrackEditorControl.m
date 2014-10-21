@@ -174,13 +174,20 @@
 	
 	CGPoint nowPoint = [touch locationInView:self];
 	CGFloat offsetX = nowPoint.x - _start.x;
+	CGFloat lmtLeft = _bottomLeftSlider.center.x;
+	CGFloat lmtRight = _bottomRightSlider.center.x;
 	
-	CGFloat lmtLeft = _bottomLeftSlider.center.x + offsetX;
+	if (nowPoint.x < lmtLeft || nowPoint.x > lmtRight)
+	{
+		return;
+	}
+	
+	lmtLeft += offsetX;
 	if (lmtLeft < _sx)
 	{
 		return;
 	}
-	CGFloat lmtRight = _bottomRightSlider.center.x + offsetX;
+	lmtRight += offsetX;
 	if (lmtRight > _ex)
 	{
 		return;
