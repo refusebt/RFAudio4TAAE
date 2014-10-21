@@ -23,17 +23,21 @@
 
 - (void)drawRange;
 - (void)restraintWithSlider:(RasSliderControl *)slider;
+- (void)showStatusWithSlider:(RasSliderControl *)slider;
+- (void)hideStatus;
 
 @end
 
 @implementation RasTrackEditorControl
 @synthesize imgViewWave = _imgViewWave;
 @synthesize imgViewRange = _imgViewRange;
+@synthesize lbStatus = _lbStatus;
 @synthesize topLeftSlider = _topLeftSlider;
 @synthesize topRightSlider = _topRightSlider;
 @synthesize bottomLeftSlider = _bottomLeftSlider;
 @synthesize bottomRightSlider = _bottomRightSlider;
 @synthesize start = _start;
+@synthesize duration = _duration;
 
 - (void)awakeFromNib
 {
@@ -79,12 +83,40 @@
 	[_bottomRightSlider setLimtStartX:_sx endX:_ex startY:_ey endY:_ey];
 	[self addSubview:_bottomRightSlider];
 	
+	_lbStatus = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 48, 16)];
+	_lbStatus.backgroundColor = RGBA2COLOR(255, 0, 0, 1);
+	[_lbStatus roundedViewWithRadius:8];
+	_lbStatus.textAlignment = NSTextAlignmentCenter;
+	_lbStatus.text = @"99:99";
+	_lbStatus.textColor = RGBA2COLOR(255, 255, 255, 1);
+	_lbStatus.font = [UIFont systemFontOfSize:12];
+	_lbStatus.alpha = 0;
+	_lbStatus.userInteractionEnabled = NO;
+	[self addSubview:_lbStatus];
+	
 	self.topLeftSlider.backgroundColor = [UIColor redColor];
 	self.topRightSlider.backgroundColor = [UIColor yellowColor];
 	self.bottomLeftSlider.backgroundColor = [UIColor orangeColor];
 	self.bottomRightSlider.backgroundColor = [UIColor purpleColor];
+	_duration = 60+42.2;
 	
 	[self drawRange];
+}
+
+- (CGFloat)ratioWithSlider:(RasSliderControl *)slider
+{
+	CGFloat full = _ex - _sx;
+	CGFloat progress = slider.center.x - _sx;
+	if (full == 0)
+	{
+		return 0;
+	}
+	return progress/full;
+}
+
+- (NSTimeInterval)timeWithSlider:(RasSliderControl *)slider
+{
+	return [self ratioWithSlider:slider] * _duration;
 }
 
 - (void)drawRange
@@ -162,6 +194,48 @@
 	}
 }
 
+- (void)showStatusWithSlider:(RasSliderControl *)slider
+{
+	_lbStatus.center = slider.center;
+	CGFloat sLeft = slider.frame.origin.x;
+	CGFloat sRight = slider.frame.origin.x + slider.frame.size.width;
+	
+	// 试着放左边
+	CGFloat lLeft = sLeft-4-_lbStatus.frame.size.width;
+	CGFloat lRight = lLeft + _lbStatus.frame.size.width;
+	if (lLeft >= _sx && lRight <= _ex)
+	{
+		[_lbStatus setFrameLeft:lLeft];
+	}
+	else
+	{
+		// 放右边
+		[_lbStatus setFrameLeft:(sRight+4)];
+	}
+	
+	NSTimeInterval t = [self timeWithSlider:slider];
+	NSInteger m = t / 60;
+	NSInteger s = (NSInteger)t % 60;
+	_lbStatus.text = [NSString stringWithFormat:@"%.2ld:%.2ld", (long)m, (long)s];
+	
+	if (_lbStatus.alpha < 1)
+	{
+		[UIView animateWithDuration:0.5 animations:^(){
+			_lbStatus.alpha = 1;
+		}];
+	}
+}
+
+- (void)hideStatus
+{
+	if (_lbStatus.alpha > 0)
+	{
+		[UIView animateWithDuration:0.5 animations:^(){
+			_lbStatus.alpha = 0;
+		}];
+	}
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	UITouch *touch = [touches anyObject];
@@ -212,7 +286,19 @@
 		[self restraintWithSlider:slider];
 	}
 	
+	[self showStatusWithSlider:_bottomLeftSlider];
+	
 	[self drawRange];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	[self hideStatus];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	[self hideStatus];
 }
 
 #pragma mark RasSliderControlDelegate
@@ -221,11 +307,12 @@
 {
 	[self restraintWithSlider:slider];
 	[self drawRange];
+	[self showStatusWithSlider:slider];
 }
 
 - (void)onSliderMoveEnd:(RasSliderControl *)slider
 {
-	
+	[self hideStatus];
 }
 
 @end

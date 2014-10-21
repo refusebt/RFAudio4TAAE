@@ -15,10 +15,14 @@
 }
 @property (nonatomic, strong) UIImageView *imgViewWave;
 @property (nonatomic, strong) UIImageView *imgViewRange;
+@property (nonatomic, strong) UILabel *lbStatus;
 @property (nonatomic, strong) RasSliderControl *topLeftSlider;
 @property (nonatomic, strong) RasSliderControl *topRightSlider;
 @property (nonatomic, strong) RasSliderControl *bottomLeftSlider;
 @property (nonatomic, strong) RasSliderControl *bottomRightSlider;
+@property (nonatomic, assign) NSTimeInterval duration;
 
+- (CGFloat)ratioWithSlider:(RasSliderControl *)slider;
+- (NSTimeInterval)timeWithSlider:(RasSliderControl *)slider;
 
 @end
