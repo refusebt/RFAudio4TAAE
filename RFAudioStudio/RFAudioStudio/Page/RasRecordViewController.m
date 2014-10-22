@@ -12,18 +12,40 @@
 #import <TheAmazingAudioEngine/AEWaveImageGenerator.h>
 #import <TheAmazingAudioEngine/AEToneFilter.h>
 
+typedef NS_ENUM(NSUInteger, RasRecordPhase)
+{
+	RasRecordPhaseInit = 0,
+	RasRecordPhaseRecording,
+	RasRecordPhaseRecordFinish,
+	RasRecordPhaseRecordPlaying,
+};
+
 @interface RasRecordViewController ()
 {
 
 }
 @property (nonatomic, strong) AEAudioController *audioController;
 @property (nonatomic, strong) RasTrackInfo *trackInfoBg;
+@property (nonatomic, assign) RasRecordPhase currentPhase;
 
 - (void)resetAudioController;
+- (void)changePhase:(RasRecordPhase)phase;
 
 @end
 
 @implementation RasRecordViewController
+@synthesize btnMusic = _btnMusic;
+@synthesize lbMusicTitle = _lbMusicTitle;
+@synthesize btnReset = _btnReset;
+@synthesize btnRecord = _btnRecord;
+@synthesize btnFinish = _btnFinish;
+@synthesize btnPlay = _btnPlay;
+@synthesize btnSave = _btnSave;
+@synthesize trackEditorBg = _trackEditorBg;
+@synthesize trackEditorRecord = _trackEditorRecord;
+@synthesize audioController = _audioController;
+@synthesize trackInfoBg = _trackInfoBg;
+@synthesize currentPhase = _currentPhase;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -148,27 +170,35 @@
 
 - (IBAction)btnReset_Click:(id)sender
 {
-	
+	[self resetAudioController];
+	[self changePhase:RasRecordPhaseInit];
 }
 
 - (IBAction)btnRecord_Click:(id)sender
 {
-	
+	[self changePhase:RasRecordPhaseRecording];
 }
 
 - (IBAction)btnFinish_Click:(id)sender
 {
-	
+	[self changePhase:RasRecordPhaseRecordFinish];
 }
 
 - (IBAction)btnPlay_Click:(id)sender
 {
-	
+	if (!_btnPlay.isSelected)
+	{
+		[self changePhase:RasRecordPhaseRecordPlaying];
+	}
+	else
+	{
+		[self changePhase:RasRecordPhaseRecordFinish];
+	}
 }
 
 - (IBAction)btnSave_Click:(id)sender
 {
-	
+	[self changePhase:RasRecordPhaseInit];
 }
 
 - (void)resetAudioController
@@ -178,6 +208,73 @@
 		[self.audioController stop];
 		self.audioController = nil;
 	}
+}
+
+- (void)changePhase:(RasRecordPhase)phase
+{
+	switch (phase)
+	{
+		case RasRecordPhaseInit:
+			{
+				_btnRecord.hidden = NO;
+				_btnFinish.hidden = NO;
+				_btnPlay.hidden = YES;
+				_btnSave.hidden = YES;
+				
+				_btnRecord.enabled = YES;
+				_btnFinish.enabled = NO;
+				_btnPlay.enabled = NO;
+				_btnSave.enabled = NO;
+			}
+			break;
+		case RasRecordPhaseRecording:
+			{
+				_btnRecord.hidden = NO;
+				_btnFinish.hidden = NO;
+				_btnPlay.hidden = YES;
+				_btnSave.hidden = YES;
+				
+				_btnRecord.enabled = NO;
+				_btnFinish.enabled = YES;
+				_btnPlay.enabled = NO;
+				_btnSave.enabled = NO;
+			}
+			break;
+		case RasRecordPhaseRecordFinish:
+			{
+				_btnRecord.hidden = YES;
+				_btnFinish.hidden = YES;
+				_btnPlay.hidden = NO;
+				_btnSave.hidden = NO;
+				
+				_btnRecord.enabled = NO;
+				_btnFinish.enabled = NO;
+				_btnPlay.enabled = YES;
+				_btnSave.enabled = YES;
+				
+				_btnPlay.selected = NO;
+			}
+			break;
+		case RasRecordPhaseRecordPlaying:
+			{
+				_btnRecord.hidden = YES;
+				_btnFinish.hidden = YES;
+				_btnPlay.hidden = NO;
+				_btnSave.hidden = NO;
+				
+				_btnRecord.enabled = NO;
+				_btnFinish.enabled = NO;
+				_btnPlay.enabled = YES;
+				_btnSave.enabled = YES;
+				
+				_btnPlay.selected = YES;
+			}
+			break;
+		default:
+			break;
+	}
+	
+	_currentPhase = phase;
 }
 
 @end

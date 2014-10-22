@@ -65,7 +65,7 @@
                     <rect key="frame" x="8" y="288" width="304" height="60"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9d-Ql-t2c">
-                            <rect key="frame" x="8" y="10" width="90.5" height="30"/>
+                            <rect key="frame" x="8" y="10" width="91" height="30"/>
                             <state key="normal" title="Reset">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -73,7 +73,7 @@
                                 <action selector="btnReset_Click:" destination="-1" eventType="touchUpInside" id="iGN-kN-AwT"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhw-jJ-XxI">
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhw-jJ-XxI">
                             <rect key="frame" x="106" y="10" width="91" height="30"/>
                             <state key="normal" title="Record">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -83,7 +83,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WPa-k1-obY">
-                            <rect key="frame" x="205" y="10" width="90.5" height="30"/>
+                            <rect key="frame" x="205" y="10" width="91" height="30"/>
                             <state key="normal" title="Finish">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -91,17 +91,18 @@
                                 <action selector="btnFinish_Click:" destination="-1" eventType="touchUpInside" id="ryg-Gy-EcF"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jST-7E-KXb">
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jST-7E-KXb">
                             <rect key="frame" x="106" y="10" width="91" height="30"/>
                             <state key="normal" title="Play">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <state key="selected" title="Stop"/>
                             <connections>
                                 <action selector="btnPlay_Click:" destination="-1" eventType="touchUpInside" id="6MW-VL-sn0"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edA-qZ-tMd">
-                            <rect key="frame" x="205" y="10" width="90.5" height="30"/>
+                            <rect key="frame" x="205" y="10" width="91" height="30"/>
                             <state key="normal" title="Save">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
