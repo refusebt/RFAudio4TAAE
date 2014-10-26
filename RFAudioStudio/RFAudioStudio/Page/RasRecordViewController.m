@@ -45,7 +45,13 @@ typedef NS_ENUM(NSUInteger, RasRecordPhase)
 - (RFAudioMixer *)audioMixerBg;
 - (RFAudioMixer *)audioMixerBgAndRecord;
 - (RFAudioMixer *)audioMixerRecord;
-- (void)playWithPlayerItem:(AVPlayerItem *)item;
+- (void)playWithPlayerItem:(AVPlayerItem *)item
+				  progress:(void(^)(NSTimeInterval currentTime, NSTimeInterval duration))aProgressBlock
+					finish:(void(^)())aFinishBlock;
+- (void)convertAACWithPlayerItem:(AVPlayerItem *)item
+							path:(NSString *)path
+				  progress:(void(^)(NSTimeInterval currentTime))aProgressBlock
+						  finish:(void(^)(BOOL isError))aFinishBlock;
 
 - (void)changePhase:(RasRecordPhase)phase;
 
@@ -170,6 +176,7 @@ typedef NS_ENUM(NSUInteger, RasRecordPhase)
 {
 	[self changePhase:RasRecordPhaseRecordFinish];
 	[self.audioController stop];
+	self.audioController = nil;
 	
 	NSString *path = [self recordPath];
 	if ([RFStorageKit isExist:path])
@@ -233,6 +240,30 @@ typedef NS_ENUM(NSUInteger, RasRecordPhase)
 - (IBAction)btnSave_Click:(id)sender
 {
 	[self changePhase:RasRecordPhaseInit];
+	
+	self.audioMixer = [self audioMixerBgAndRecord];
+	if (self.audioMixer != nil)
+	{
+		NSString *file = [NSString stringWithFormat:@"mix_%lld.m4a", [NSDate millisecondSince1970]];
+		NSString *path = [RFStorageKit documentPathWithDirectory:nil file:file];
+		[SVProgressHUD showWithStatus:@"Converting" maskType:SVProgressHUDMaskTypeGradient];
+		[self convertAACWithPlayerItem:[self.audioMixer avPlayerItem]
+								  path:path
+							  progress:^(NSTimeInterval currentTime){
+								  NSLog(@"%f", currentTime);
+							  }
+								finish:^(BOOL isError){
+									[SVProgressHUD dismiss];
+									if (!isError)
+									{
+										[RFAlertView show:[NSString stringWithFormat:@"finish.(%@)", file]];
+									}
+									else
+									{
+										[RFAlertView show:@"error"];
+									}
+								}];
+	}
 }
 
 - (IBAction)btnPlayBg_Click:(id)sender
@@ -347,7 +378,7 @@ typedef NS_ENUM(NSUInteger, RasRecordPhase)
 		return nil;
 	}
 	[audioController addInputReceiver:recorder];	// 为了输入
-	[audioController addOutputReceiver:recorder];	// 为了写入
+	//[audioController addOutputReceiver:recorder];	// 混入背景音
 	
 	if ([RFAudioKit isHeadphone])
 	{
@@ -484,6 +515,44 @@ typedef NS_ENUM(NSUInteger, RasRecordPhase)
 	
 	self.audioController = audioController;
 	[self.audioController start:&error];
+	if (error != nil)
+	{
+		NSLog(@"%@", error);
+	}
+}
+
+- (void)convertAACWithPlayerItem:(AVPlayerItem *)item
+							path:(NSString *)path
+				  progress:(void(^)(NSTimeInterval currentTime))aProgressBlock
+						  finish:(void(^)(BOOL isError))aFinishBlock
+{
+	NSError *error = nil;
+	[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAudioProcessing error:&error];
+	NSLog(@"%@", error);
+	[[AVAudioSession sharedInstance] setActive:YES error:&error];
+	NSLog(@"%@", error);
+	
+	AVPlayerItem *playerItem = item;
+	AEAudioController *audioController = [[AEAudioController alloc] initGenericOutputWithAudioDescription:[AEAudioController nonInterleaved16BitStereoAudioDescription]];
+	audioController.preferredBufferDuration = 0.005;
+	audioController.useMeasurementMode = YES;
+	
+	AEAvPlayerItemPlayer *player = [[AEAvPlayerItemPlayer alloc] initWithWithItem:playerItem audioController:audioController];
+	player.volume = 1.0;
+	player.channelIsPlaying = YES;
+	player.channelIsMuted = NO;
+	[player prepareWithProgress:^(NSTimeInterval currentTime, NSTimeInterval duration){} finish:^(){}];
+	
+	AEChannelGroupRef group = [audioController createChannelGroup];
+	[audioController addChannels:[NSArray arrayWithObjects:player, nil] toChannelGroup:group];
+	
+	AEOutputConvert *convert = [[AEOutputConvert alloc] initWithAudioController:audioController path:path type:AEOutputConvertTypeAAC];
+	[convert prepareWithProgress:aProgressBlock finish:aFinishBlock];
+	[audioController addOutputReceiver:convert];
+	
+	self.audioController = audioController;
+	
+	[audioController start:&error];
 	if (error != nil)
 	{
 		NSLog(@"%@", error);

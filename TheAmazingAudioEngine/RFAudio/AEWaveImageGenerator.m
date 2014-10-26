@@ -78,6 +78,12 @@ static int16_t valueRegular(int16_t value);
 		return nil;
 	}
 	
+	NSError *error = nil;
+	[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAudioProcessing error:&error];
+	NSLog(@"%@", error);
+	[[AVAudioSession sharedInstance] setActive:YES error:&error];
+	NSLog(@"%@", error);
+	
 	AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:assert];
 	AEAudioController *audioController = [[AEAudioController alloc] initGenericOutputWithAudioDescription:[AEAudioController nonInterleaved16BitStereoAudioDescription]];
 	audioController.preferredBufferDuration = 0.005;
@@ -87,7 +93,7 @@ static int16_t valueRegular(int16_t value);
 	player.volume = 1.0;
 	player.channelIsPlaying = YES;
 	player.channelIsMuted = NO;
-	[player prepareWithProgress:nil finish:nil];
+	[player prepareWithProgress:^(NSTimeInterval currentTime, NSTimeInterval duration){} finish:^(){}];
 	
 	AEChannelGroupRef group = [audioController createChannelGroup];
 	[audioController addChannels:[NSArray arrayWithObjects:player, nil] toChannelGroup:group];
@@ -98,7 +104,6 @@ static int16_t valueRegular(int16_t value);
 	generator.finishBlock = finishBlock;
 	[audioController addOutputReceiver:generator];
 	
-	NSError *error = nil;
 	[audioController start:&error];
 	if (error != nil)
 	{

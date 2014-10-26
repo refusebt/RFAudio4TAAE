@@ -136,7 +136,9 @@
 				if ([ext isEqualToString:@"wav"]
 					|| [ext isEqualToString:@"caf"]
 					|| [ext isEqualToString:@"mp3"]
-					|| [ext isEqualToString:@"mp4"])
+					|| [ext isEqualToString:@"mp4"]
+					|| [ext isEqualToString:@"m4a"]
+					|| [ext isEqualToString:@"m4r"])
 				{
 					RasTrackInfo *ti = [[RasTrackInfo alloc] init];
 					ti.path = [path lastPathComponent];
