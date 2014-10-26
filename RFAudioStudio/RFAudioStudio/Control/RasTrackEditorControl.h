@@ -28,4 +28,10 @@
 - (CGFloat)ratioWithSlider:(RasSliderControl *)slider;
 - (NSTimeInterval)timeWithSlider:(RasSliderControl *)slider;
 
+- (NSTimeInterval)playStart;
+- (NSTimeInterval)playEnd;
+- (NSTimeInterval)volumeRampBeginDuration;
+- (NSTimeInterval)volumeRampEndDuration;
+- (NSTimeInterval)playDuration;
+
 @end

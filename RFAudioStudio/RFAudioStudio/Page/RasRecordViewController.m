@@ -14,6 +14,7 @@
 #import <TheAmazingAudioEngine/AEToneFilter.h>
 #import <TheAmazingAudioEngine/AERecorder.h>
 #import <TheAmazingAudioEngine/AEPlaythroughChannel.h>
+#import <TheAmazingAudioEngine/RFAudioMixer.h>
 
 #define kRasTmpRecordFile				@"record.caf"
 
@@ -34,12 +35,17 @@ typedef NS_ENUM(NSUInteger, RasRecordPhase)
 @property (nonatomic, strong) RasTrackInfo *trackInfoRecord;
 @property (nonatomic, assign) RasRecordPhase currentPhase;
 @property (nonatomic, strong) AEPlaythroughChannel *playthroughChannel;
+@property (nonatomic, strong) RFAudioMixer *audioMixer;
 
 - (void)reset;
 - (void)resetAudioController;
 - (AEAudioController *)audioControllerForRecord;
 - (void)setPlaythroughChannel:(BOOL)bThrough audioController:(AEAudioController *)audioController;
 - (NSString *)recordPath;
+- (RFAudioMixer *)audioMixerBg;
+- (RFAudioMixer *)audioMixerBgAndRecord;
+- (RFAudioMixer *)audioMixerRecord;
+- (void)playWithPlayerItem:(AVPlayerItem *)item;
 
 - (void)changePhase:(RasRecordPhase)phase;
 
@@ -136,51 +142,6 @@ typedef NS_ENUM(NSUInteger, RasRecordPhase)
 		}
 		self.lbMusicTitle.text = @"No background";
 		self.trackEditorBg.imgViewWave.image = nil;
-		
-//		AVPlayerItem *playerItem = [ti avPlayerItem];
-//		if (playerItem == nil)
-//		{
-//			return;
-//		}
-//
-////		self.audioController = [[AEAudioController alloc] initWithAudioDescription:[AEAudioController nonInterleaved16BitStereoAudioDescription] inputEnabled:YES];
-//		self.audioController = [[AEAudioController alloc] initGenericOutputWithAudioDescription:[AEAudioController nonInterleaved16BitStereoAudioDescription]];
-//		_audioController.preferredBufferDuration = 0.005;
-//		_audioController.useMeasurementMode = YES;
-//		
-//		AEAvPlayerItemPlayer *player = [[AEAvPlayerItemPlayer alloc] initWithWithItem:playerItem audioController:self.audioController];
-//		[player prepareWithProgress:
-//		 ^(NSTimeInterval currentTime, NSTimeInterval duration){
-//			 
-//		 }
-//							 finish:
-//		 ^(){
-//			 NSLog(@"%@ finish", player);
-//		 }];
-//		
-//		player.volume = 1.0;
-//		player.channelIsPlaying = YES;
-//		player.channelIsMuted = NO;
-//		
-//		AEChannelGroupRef group = [_audioController createChannelGroup];
-//		[_audioController addChannels:[NSArray arrayWithObjects:player, nil] toChannelGroup:group];
-//		
-//		AEWaveImageGenerator *generator = [[AEWaveImageGenerator alloc] initWithAudioController:self.audioController width:1920 height:90 duration:player.duration color:[UIColor redColor]];
-//		generator.isHeightMax = YES;
-//		generator.finish = ^(UIImage *image){
-//			self.imgViewBgWave.image = image;
-//		};
-//		[_audioController addOutputReceiver:generator];
-//		
-////		AEToneFilter *up = [[AEToneFilter alloc] init];
-////		[_audioController addFilter:up];
-//		
-//		NSError *error = nil;
-//		[self.audioController start:&error];
-//		if (error != nil)
-//		{
-//			NSLog(@"%@", error);
-//		}
 	};
 	[self presentViewController:[RasUIKit navCtrlWithRootCtrl:selectCtrl] animated:YES];
 }
@@ -247,11 +208,25 @@ typedef NS_ENUM(NSUInteger, RasRecordPhase)
 {
 	if (!_btnPlay.isSelected)
 	{
-		[self changePhase:RasRecordPhaseRecordPlaying];
+		self.audioMixer = [self audioMixerBgAndRecord];
+		if (self.audioMixer != nil)
+		{
+			[self changePhase:RasRecordPhaseRecordPlaying];
+			[self playWithPlayerItem:[self.audioMixer avPlayerItem]
+							progress:^(NSTimeInterval currentTime, NSTimeInterval duration){
+								
+							}
+							  finish:^(){
+								  [self changePhase:RasRecordPhaseRecordFinish];
+								  self.audioController = nil;
+							  }];
+		}
 	}
 	else
 	{
 		[self changePhase:RasRecordPhaseRecordFinish];
+		[self.audioController stop];
+		self.audioController = nil;
 	}
 }
 
@@ -262,12 +237,50 @@ typedef NS_ENUM(NSUInteger, RasRecordPhase)
 
 - (IBAction)btnPlayBg_Click:(id)sender
 {
-
+	if (!_btnPlayBg.selected)
+	{
+		self.audioMixer = [self audioMixerBg];
+		if (self.audioMixer != nil)
+		{
+			[self playWithPlayerItem:[self.audioMixer avPlayerItem]
+							progress:^(NSTimeInterval currentTime, NSTimeInterval duration){}
+							  finish:^(){
+								  self.audioController = nil;
+								  _btnPlayBg.selected = NO;
+							  }];
+			_btnPlayBg.selected = YES;
+		}
+	}
+	else
+	{
+		[self.audioController stop];
+		self.audioController = nil;
+		_btnPlayBg.selected = NO;
+	}
 }
 
 - (IBAction)btnPlayRecord_Click:(id)sender
 {
-	
+	if (!_btnPlayRecord.selected)
+	{
+		self.audioMixer = [self audioMixerRecord];
+		if (self.audioMixer != nil)
+		{
+			[self playWithPlayerItem:[self.audioMixer avPlayerItem]
+							progress:^(NSTimeInterval currentTime, NSTimeInterval duration){}
+							  finish:^(){
+								  self.audioController = nil;
+								  _btnPlayRecord.selected = NO;
+							  }];
+			_btnPlayRecord.selected = YES;
+		}
+	}
+	else
+	{
+		[self.audioController stop];
+		self.audioController = nil;
+		_btnPlayRecord.selected = NO;
+	}
 }
 
 - (void)reset
@@ -281,6 +294,7 @@ typedef NS_ENUM(NSUInteger, RasRecordPhase)
 	[_trackEditorRecord reset];
 	
 	self.playthroughChannel = nil;
+	self.audioMixer = nil;
 }
 
 - (void)resetAudioController
@@ -304,12 +318,8 @@ typedef NS_ENUM(NSUInteger, RasRecordPhase)
 	audioController.preferredBufferDuration = 0.005;
 	audioController.useMeasurementMode = YES;
 	
-	AVPlayerItem *playerItem = nil;
-	if (_trackInfoBg != nil)
-	{
-		playerItem = [_trackInfoBg avPlayerItem];
-	}
-	
+	self.audioMixer = [self audioMixerBg];
+	AVPlayerItem *playerItem = [self.audioMixer avPlayerItem];
 	if (playerItem != nil)
 	{
 		AEAvPlayerItemPlayer *player = [[AEAvPlayerItemPlayer alloc] initWithWithItem:playerItem audioController:audioController];
@@ -378,6 +388,106 @@ typedef NS_ENUM(NSUInteger, RasRecordPhase)
 		s_path = [RFStorageKit tmpPathWithDirectory:nil file:kRasTmpRecordFile];
 	}
 	return s_path;
+}
+
+- (RFAudioMixer *)audioMixerBg
+{
+	RFAudioMixer *mixer = nil;
+	if (_trackInfoBg != nil)
+	{
+		mixer = [[RFAudioMixer alloc] init];
+		if (_trackInfoBg != nil)
+		{
+			RFAudioMixTrack *track = [RFAudioMixTrack trackWithURL:[_trackInfoBg assertUrl] Name:@"trackBg"];
+			[track setTargetPosition:CMTimeMake(0, 1)];
+			[track setSourceStart:CMTimeMake([_trackEditorBg playStart], 1) End:CMTimeMake([_trackEditorBg playEnd], 1)];
+			[track addBeginVolumeRampWithDuration:CMTimeMake([_trackEditorBg volumeRampBeginDuration], 1)];
+			[track addEndVolumeRampWithDuration:CMTimeMake([_trackEditorBg volumeRampEndDuration], 1)];
+			[mixer addAudioMixTrack:track];
+		}
+	}
+	return mixer;
+}
+
+- (RFAudioMixer *)audioMixerBgAndRecord
+{
+	RFAudioMixer *mixer = nil;
+	if (_trackInfoBg != nil || _trackInfoRecord != nil)
+	{
+		mixer = [[RFAudioMixer alloc] init];
+		
+		if (_trackInfoBg != nil)
+		{
+			RFAudioMixTrack *track = [RFAudioMixTrack trackWithURL:[_trackInfoBg assertUrl] Name:@"trackBg"];
+			[track setTargetPosition:CMTimeMake(0, 1)];
+			[track setSourceStart:CMTimeMake([_trackEditorBg playStart], 1) End:CMTimeMake([_trackEditorBg playEnd], 1)];
+			[track addBeginVolumeRampWithDuration:CMTimeMake([_trackEditorBg volumeRampBeginDuration], 1)];
+			[track addEndVolumeRampWithDuration:CMTimeMake([_trackEditorBg volumeRampEndDuration], 1)];
+			[mixer addAudioMixTrack:track];
+		}
+		
+		if (_trackInfoRecord != nil)
+		{
+			RFAudioMixTrack *track = [RFAudioMixTrack trackWithURL:[_trackInfoRecord assertUrl] Name:@"trackRecord"];
+			[track setTargetPosition:CMTimeMake(0, 1)];
+			[track setSourceStart:CMTimeMake([_trackEditorRecord playStart], 1) End:CMTimeMake([_trackEditorRecord playEnd], 1)];
+			[track addBeginVolumeRampWithDuration:CMTimeMake([_trackEditorRecord volumeRampBeginDuration], 1)];
+			[track addEndVolumeRampWithDuration:CMTimeMake([_trackEditorRecord volumeRampEndDuration], 1)];
+			[mixer addAudioMixTrack:track];
+		}
+	}
+	return mixer;
+}
+
+- (RFAudioMixer *)audioMixerRecord
+{
+	RFAudioMixer *mixer = nil;
+	if (_trackInfoRecord != nil)
+	{
+		mixer = [[RFAudioMixer alloc] init];
+		if (_trackInfoRecord != nil)
+		{
+			RFAudioMixTrack *track = [RFAudioMixTrack trackWithURL:[_trackInfoRecord assertUrl] Name:@"trackRecord"];
+			[track setTargetPosition:CMTimeMake(0, 1)];
+			[track setSourceStart:CMTimeMake([_trackEditorRecord playStart], 1) End:CMTimeMake([_trackEditorRecord playEnd], 1)];
+			[track addBeginVolumeRampWithDuration:CMTimeMake([_trackEditorRecord volumeRampBeginDuration], 1)];
+			[track addEndVolumeRampWithDuration:CMTimeMake([_trackEditorRecord volumeRampEndDuration], 1)];
+			[mixer addAudioMixTrack:track];
+		}
+	}
+	return mixer;
+}
+
+- (void)playWithPlayerItem:(AVPlayerItem *)item
+				  progress:(void(^)(NSTimeInterval currentTime, NSTimeInterval duration))aProgressBlock
+					finish:(void(^)())aFinishBlock
+{
+	NSError *error = nil;
+	[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error];
+	NSLog(@"%@", error);
+	[[AVAudioSession sharedInstance] setActive:YES error:&error];
+	NSLog(@"%@", error);
+	
+	AEAudioController *audioController = [[AEAudioController alloc] initWithAudioDescription:[AEAudioController nonInterleaved16BitStereoAudioDescription] inputEnabled:YES];
+	audioController.preferredBufferDuration = 0.005;
+	audioController.useMeasurementMode = YES;
+	
+	AVPlayerItem *playerItem = item;
+	AEAvPlayerItemPlayer *player = [[AEAvPlayerItemPlayer alloc] initWithWithItem:playerItem audioController:audioController];
+	[player prepareWithProgress:aProgressBlock finish:aFinishBlock];
+	player.volume = 1.0;
+	player.channelIsPlaying = YES;
+	player.channelIsMuted = NO;
+	
+	AEChannelGroupRef group = [audioController createChannelGroup];
+	[audioController addChannels:[NSArray arrayWithObjects:player, nil] toChannelGroup:group];
+	
+	self.audioController = audioController;
+	[self.audioController start:&error];
+	if (error != nil)
+	{
+		NSLog(@"%@", error);
+	}
 }
 
 - (void)changePhase:(RasRecordPhase)phase

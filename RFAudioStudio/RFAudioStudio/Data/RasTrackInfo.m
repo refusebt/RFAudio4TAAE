@@ -10,29 +10,28 @@
 
 @implementation RasTrackInfo
 
-- (AVURLAsset *)assert
+- (NSURL *)assertUrl
 {
-	AVURLAsset *assert = nil;
 	NSURL *url = nil;
 	switch (self.location)
 	{
 		case RasTrackLocationDocument:
-			{
-				NSString *path = [RFStorageKit documentPathWithDirectory:nil file:self.path];
-				url = [NSURL fileURLWithPath:path];
-			}
+		{
+			NSString *path = [RFStorageKit documentPathWithDirectory:nil file:self.path];
+			url = [NSURL fileURLWithPath:path];
+		}
 			break;
 		case RasTrackLocationTmp:
-			{
-				NSString *path = [RFStorageKit tmpPathWithDirectory:nil file:self.path];
-				url = [NSURL fileURLWithPath:path];
-			}
+		{
+			NSString *path = [RFStorageKit tmpPathWithDirectory:nil file:self.path];
+			url = [NSURL fileURLWithPath:path];
+		}
 			break;
 		case RasTrackLocationCache:
-			{
-				NSString *path = [RFStorageKit cachePathWithDirectory:nil file:self.path];
-				url = [NSURL fileURLWithPath:path];
-			}
+		{
+			NSString *path = [RFStorageKit cachePathWithDirectory:nil file:self.path];
+			url = [NSURL fileURLWithPath:path];
+		}
 			break;
 		case RasTrackLocationItunes:
 			url = [NSURL URLWithString:self.path];
@@ -43,12 +42,17 @@
 		default:
 			break;
 	}
+	return url;
+}
 
+- (AVURLAsset *)assert
+{
+	AVURLAsset *assert = nil;
+	NSURL *url = [self assertUrl];
 	if (url != nil)
 	{
 		assert = [AVURLAsset assetWithURL:url];
 	}
-	
 	return assert;
 }
 

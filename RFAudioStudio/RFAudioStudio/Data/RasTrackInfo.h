@@ -28,6 +28,7 @@ typedef NS_ENUM(NSUInteger, RasTrackLocation)
 @property (nonatomic, assign) RasTrackLocation location;
 @property (nonatomic, assign) NSDate *date;
 
+- (NSURL *)assertUrl;
 - (AVURLAsset *)assert;
 - (AVPlayerItem *)avPlayerItem;
 

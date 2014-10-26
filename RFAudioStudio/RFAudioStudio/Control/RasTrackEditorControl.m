@@ -155,6 +155,37 @@
 	return [self ratioWithSlider:slider] * _duration;
 }
 
+- (NSTimeInterval)playStart
+{
+	return [self timeWithSlider:_bottomLeftSlider];
+}
+
+- (NSTimeInterval)playEnd
+{
+	return [self timeWithSlider:_bottomRightSlider];
+}
+
+- (NSTimeInterval)volumeRampBeginDuration
+{
+	NSTimeInterval s = [self playStart];
+	NSTimeInterval e = [self timeWithSlider:_topLeftSlider];
+	return e-s;
+}
+
+- (NSTimeInterval)volumeRampEndDuration
+{
+	NSTimeInterval s = [self timeWithSlider:_topRightSlider];
+	NSTimeInterval e = [self playEnd];
+	return e-s;
+}
+
+- (NSTimeInterval)playDuration
+{
+	NSTimeInterval s = [self playStart];
+	NSTimeInterval e = [self playEnd];
+	return e-s;
+}
+
 - (void)drawRange
 {
 	UIGraphicsBeginImageContextWithOptions(self.imgViewRange.frame.size, NO, [UIScreen mainScreen].scale);
