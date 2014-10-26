@@ -13,6 +13,7 @@
 {
 
 }
+@property (nonatomic, strong) UISegmentedControl *segmentedControl;
 @property (nonatomic, strong) NSMutableArray *trackInfos;
 @property (nonatomic, strong) RasTrackInfo *selectedTrackInfo;
 
@@ -42,6 +43,7 @@
 	sc.selectedSegmentIndex = 0;
 	[sc addTarget:self action:@selector(btnSwitch_Click:) forControlEvents:UIControlEventValueChanged];
 	self.navigationItem.titleView = sc;
+	self.segmentedControl = sc;
 	
 	self.tblMusic.contentInset = UIEdgeInsetsMake(54, 0, 10, 0);
 	
@@ -215,4 +217,27 @@
 	return 44;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if (self.segmentedControl.selectedSegmentIndex == 0)
+	{
+		return NO;
+	}
+	if (indexPath.section == 0)
+	{
+		return NO;
+	}
+	return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if (editingStyle == UITableViewCellEditingStyleDelete)
+	{
+		RasTrackInfo *ti = self.trackInfos[indexPath.row];
+		NSURL *url = [ti assertUrl];
+		[RFStorageKit removeWithPath:[url path]];
+		[self bindDocument];
+	}
+}
 @end
