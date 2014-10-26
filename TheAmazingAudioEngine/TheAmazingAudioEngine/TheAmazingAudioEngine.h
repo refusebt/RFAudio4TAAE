@@ -44,6 +44,7 @@ extern "C" {
 #import "AEUtilities.h"
 
 // AS RFAudio For TAAE GZH 20141019
+#import "RFAudioKit.h"
 #import "AEAssetReader.h"
 #import "AEAvPlayerItemPlayer.h"
 #import "AEOutputConvert.h"

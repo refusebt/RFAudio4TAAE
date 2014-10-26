@@ -127,6 +127,18 @@
 	[self drawRange];
 }
 
+- (void)reset
+{
+	_imgViewWave.image = nil;
+	_duration = 0;
+	
+	_topLeftSlider.hidden = YES;
+	_topRightSlider.hidden = YES;
+	_bottomLeftSlider.hidden = YES;
+	_bottomRightSlider.hidden = YES;
+	_imgViewRange.hidden = YES;
+}
+
 - (CGFloat)ratioWithSlider:(RasSliderControl *)slider
 {
 	CGFloat full = _ex - _sx;

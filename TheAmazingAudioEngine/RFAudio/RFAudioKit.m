@@ -7,6 +7,7 @@
 //
 
 #import "RFAudioKit.h"
+#import <AVFoundation/AVFoundation.h>
 
 #define DEF_ERROR(error, msg)	\
 	case error:	\
@@ -232,6 +233,38 @@ static char ALAW_TAG_FACT_CONTENT[] =
 			}
 			
 			[newFileData writeToURL:fileUrl atomically:YES];
+			return YES;
+		}
+	}
+	return NO;
+}
+
++ (BOOL)isHeadphone
+{
+	NSArray *outputs = [[[AVAudioSession sharedInstance] currentRoute ] outputs];
+	NSInteger outputCount = [outputs count];
+	for(NSInteger i = 0; i < outputCount; ++i)
+	{
+		AVAudioSessionPortDescription *description = (AVAudioSessionPortDescription *)[outputs objectAtIndex:i];
+		NSString *string = [description portType];
+		
+		if( [string isEqualToString:AVAudioSessionPortHeadphones] )
+		{
+			return YES;
+		}
+		
+		if( [string isEqualToString:AVAudioSessionPortBluetoothA2DP] )
+		{
+			return YES;
+		}
+		
+		if( [string isEqualToString:AVAudioSessionPortBluetoothHFP] )
+		{
+			return YES;
+		}
+		
+		if( [string isEqualToString:AVAudioSessionPortBluetoothLE] )
+		{
 			return YES;
 		}
 	}

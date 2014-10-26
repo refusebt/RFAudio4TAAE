@@ -26,4 +26,6 @@
 + (OSStatus)SkyOSStatusAudioWithError:(OSStatus)error file:(char *)file lineNo:(NSInteger)lineNo;
 + (BOOL)correctAlawHeader:(NSURL *)fileUrl;
 
++ (BOOL)isHeadphone;
+
 @end

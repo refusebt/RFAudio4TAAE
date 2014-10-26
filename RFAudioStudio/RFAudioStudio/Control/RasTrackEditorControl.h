@@ -23,6 +23,7 @@
 @property (nonatomic, assign) NSTimeInterval duration;
 
 - (void)bindWithImage:(UIImage *)image duration:(NSTimeInterval)duration;
+- (void)reset;
 
 - (CGFloat)ratioWithSlider:(RasSliderControl *)slider;
 - (NSTimeInterval)timeWithSlider:(RasSliderControl *)slider;

@@ -22,6 +22,8 @@
 @property (nonatomic, strong) IBOutlet UIButton *btnSave;
 @property (nonatomic, strong) IBOutlet RasTrackEditorControl *trackEditorBg;
 @property (nonatomic, strong) IBOutlet RasTrackEditorControl *trackEditorRecord;
+@property (nonatomic, strong) IBOutlet UIButton *btnPlayBg;
+@property (nonatomic, strong) IBOutlet UIButton *btnPlayRecord;
 
 - (IBAction)btnMusic_Click:(id)sender;
 - (IBAction)btnReset_Click:(id)sender;
@@ -29,5 +31,8 @@
 - (IBAction)btnFinish_Click:(id)sender;
 - (IBAction)btnPlay_Click:(id)sender;
 - (IBAction)btnSave_Click:(id)sender;
+
+- (IBAction)btnPlayBg_Click:(id)sender;
+- (IBAction)btnPlayRecord_Click:(id)sender;
 
 @end

@@ -8,9 +8,14 @@
 
 #import "RasRecordViewController.h"
 #import "RasMusicSelectViewController.h"
+#import <AVFoundation/AVFoundation.h>
 #import <TheAmazingAudioEngine/TheAmazingAudioEngine.h>
 #import <TheAmazingAudioEngine/AEWaveImageGenerator.h>
 #import <TheAmazingAudioEngine/AEToneFilter.h>
+#import <TheAmazingAudioEngine/AERecorder.h>
+#import <TheAmazingAudioEngine/AEPlaythroughChannel.h>
+
+#define kRasTmpRecordFile				@"record.caf"
 
 typedef NS_ENUM(NSUInteger, RasRecordPhase)
 {
@@ -26,9 +31,16 @@ typedef NS_ENUM(NSUInteger, RasRecordPhase)
 }
 @property (nonatomic, strong) AEAudioController *audioController;
 @property (nonatomic, strong) RasTrackInfo *trackInfoBg;
+@property (nonatomic, strong) RasTrackInfo *trackInfoRecord;
 @property (nonatomic, assign) RasRecordPhase currentPhase;
+@property (nonatomic, strong) AEPlaythroughChannel *playthroughChannel;
 
+- (void)reset;
 - (void)resetAudioController;
+- (AEAudioController *)audioControllerForRecord;
+- (void)setPlaythroughChannel:(BOOL)bThrough audioController:(AEAudioController *)audioController;
+- (NSString *)recordPath;
+
 - (void)changePhase:(RasRecordPhase)phase;
 
 @end
@@ -43,9 +55,13 @@ typedef NS_ENUM(NSUInteger, RasRecordPhase)
 @synthesize btnSave = _btnSave;
 @synthesize trackEditorBg = _trackEditorBg;
 @synthesize trackEditorRecord = _trackEditorRecord;
+@synthesize btnPlayBg = _btnPlayBg;
+@synthesize btnPlayRecord = _btnPlayRecord;
 @synthesize audioController = _audioController;
 @synthesize trackInfoBg = _trackInfoBg;
+@synthesize trackInfoRecord = _trackInfoRecord;
 @synthesize currentPhase = _currentPhase;
+@synthesize playthroughChannel = _playthroughChannel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -63,6 +79,7 @@ typedef NS_ENUM(NSUInteger, RasRecordPhase)
 	// Do any additional setup after loading the view from its nib.
 	
 	self.lbMusicTitle.text = @"No background";
+	[self changePhase:RasRecordPhaseInit];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -170,18 +187,60 @@ typedef NS_ENUM(NSUInteger, RasRecordPhase)
 
 - (IBAction)btnReset_Click:(id)sender
 {
-	[self resetAudioController];
+	[self reset];
 	[self changePhase:RasRecordPhaseInit];
 }
 
 - (IBAction)btnRecord_Click:(id)sender
 {
 	[self changePhase:RasRecordPhaseRecording];
+	[self resetAudioController];
+	self.audioController = [self audioControllerForRecord];
+	
+	NSError *error = nil;
+	[self.audioController start:&error];
+	if (error != nil)
+	{
+		NSLog(@"%@", error);
+	}
 }
 
 - (IBAction)btnFinish_Click:(id)sender
 {
 	[self changePhase:RasRecordPhaseRecordFinish];
+	[self.audioController stop];
+	
+	NSString *path = [self recordPath];
+	if ([RFStorageKit isExist:path])
+	{
+		RasTrackInfo *ti = [[RasTrackInfo alloc] init];
+		ti.name = @"record";
+		ti.path = kRasTmpRecordFile;
+		ti.location = RasTrackLocationTmp;
+		ti.date = [NSDate date];
+		self.trackInfoRecord = ti;
+		
+		AVURLAsset *assert = [ti assert];
+		CGSize size = self.trackEditorRecord.frame.size;
+		size.width *= [UIScreen mainScreen].scale;
+		size.height *= [UIScreen mainScreen].scale;
+		[AEWaveImageGenerator waveImageWithAssert:assert
+											 size:size
+											color:[UIColor redColor]
+									  isHeightMax:YES
+											start:^(AEWaveImageGenerator *generator){
+												[SVProgressHUD showWithStatus:@"Loading" maskType:SVProgressHUDMaskTypeGradient];
+											}
+										   finish:^(AEWaveImageGenerator *generator){
+											   [SVProgressHUD dismiss];
+											   NSTimeInterval duration = CMTimeGetSeconds(assert.duration);
+											   [self.trackEditorRecord bindWithImage:generator.waveImage duration:duration];
+										   }];
+	}
+	else
+	{
+		[RFAlertView show:@"Record Fail"];
+	}
 }
 
 - (IBAction)btnPlay_Click:(id)sender
@@ -201,6 +260,29 @@ typedef NS_ENUM(NSUInteger, RasRecordPhase)
 	[self changePhase:RasRecordPhaseInit];
 }
 
+- (IBAction)btnPlayBg_Click:(id)sender
+{
+
+}
+
+- (IBAction)btnPlayRecord_Click:(id)sender
+{
+	
+}
+
+- (void)reset
+{
+	[self resetAudioController];
+	
+	self.trackInfoBg = nil;
+	[_trackEditorBg reset];
+	
+	self.trackInfoRecord = nil;
+	[_trackEditorRecord reset];
+	
+	self.playthroughChannel = nil;
+}
+
 - (void)resetAudioController
 {
 	if (self.audioController != nil)
@@ -208,6 +290,94 @@ typedef NS_ENUM(NSUInteger, RasRecordPhase)
 		[self.audioController stop];
 		self.audioController = nil;
 	}
+}
+
+- (AEAudioController *)audioControllerForRecord
+{
+	NSError *error = nil;
+	[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
+	NSLog(@"%@", error);
+	[[AVAudioSession sharedInstance] setActive:YES error:&error];
+	NSLog(@"%@", error);
+	
+	AEAudioController *audioController = [[AEAudioController alloc] initWithAudioDescription:[AEAudioController nonInterleaved16BitStereoAudioDescription] inputEnabled:YES];
+	audioController.preferredBufferDuration = 0.005;
+	audioController.useMeasurementMode = YES;
+	
+	AVPlayerItem *playerItem = nil;
+	if (_trackInfoBg != nil)
+	{
+		playerItem = [_trackInfoBg avPlayerItem];
+	}
+	
+	if (playerItem != nil)
+	{
+		AEAvPlayerItemPlayer *player = [[AEAvPlayerItemPlayer alloc] initWithWithItem:playerItem audioController:audioController];
+		[player prepareWithProgress:
+		 ^(NSTimeInterval currentTime, NSTimeInterval duration){
+			 
+		 }
+							 finish:
+		 ^(){
+			 NSLog(@"%@ finish", player);
+		 }];
+		player.volume = 1.0;
+		player.channelIsPlaying = YES;
+		player.channelIsMuted = NO;
+		
+		AEChannelGroupRef group = [audioController createChannelGroup];
+		[audioController addChannels:[NSArray arrayWithObjects:player, nil] toChannelGroup:group];
+	}
+	
+	AERecorder *recorder = [[AERecorder alloc] initWithAudioController:audioController];
+	[recorder beginRecordingToFileAtPath:[self recordPath] fileType:kAudioFileCAFType error:&error];
+	if (error != nil)
+	{
+		NSLog(@"%@", error);
+		return nil;
+	}
+	[audioController addInputReceiver:recorder];	// 为了输入
+	[audioController addOutputReceiver:recorder];	// 为了写入
+	
+	if ([RFAudioKit isHeadphone])
+	{
+		[self setPlaythroughChannel:YES audioController:audioController];
+	}
+	
+	return audioController;
+}
+
+- (void)setPlaythroughChannel:(BOOL)bThrough audioController:(AEAudioController *)audioController
+{
+	if (bThrough)
+	{
+		if (self.playthroughChannel == nil)
+		{
+			// 为了录音回放
+			self.playthroughChannel = [[AEPlaythroughChannel alloc] initWithAudioController:audioController];
+			[audioController addInputReceiver:_playthroughChannel];
+			[audioController addChannels:@[_playthroughChannel]];
+		}
+	}
+	else
+	{
+		if (self.playthroughChannel != nil)
+		{
+			[audioController removeChannels:@[_playthroughChannel]];
+			[audioController removeInputReceiver:_playthroughChannel];
+			self.playthroughChannel = nil;
+		}
+	}
+}
+
+- (NSString *)recordPath
+{
+	static NSString *s_path = nil;
+	if (s_path == nil)
+	{
+		s_path = [RFStorageKit tmpPathWithDirectory:nil file:kRasTmpRecordFile];
+	}
+	return s_path;
 }
 
 - (void)changePhase:(RasRecordPhase)phase

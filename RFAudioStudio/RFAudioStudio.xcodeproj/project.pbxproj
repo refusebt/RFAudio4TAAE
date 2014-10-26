@@ -504,7 +504,7 @@
 		78AC313619F23C810005ADDE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = TechAtk;
 				TargetAttributes = {
 					78AC313D19F23C810005ADDE = {
@@ -681,6 +681,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "f96f2916-d447-4222-9b3c-c46ad7a8ac62";
 				SDKROOT = iphoneos;
 			};

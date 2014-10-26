@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RasRecordViewController">
@@ -10,6 +10,8 @@
                 <outlet property="btnFinish" destination="WPa-k1-obY" id="6jf-6A-v2u"/>
                 <outlet property="btnMusic" destination="Uv2-dO-yjZ" id="iLK-vY-8Ox"/>
                 <outlet property="btnPlay" destination="jST-7E-KXb" id="pnC-hq-9XI"/>
+                <outlet property="btnPlayBg" destination="ajX-zg-gtb" id="1oP-N3-GuO"/>
+                <outlet property="btnPlayRecord" destination="6eB-Pv-bN8" id="PU7-LT-fl1"/>
                 <outlet property="btnRecord" destination="zhw-jJ-XxI" id="owJ-ED-knO"/>
                 <outlet property="btnReset" destination="V9d-Ql-t2c" id="Sd1-Ll-A4H"/>
                 <outlet property="btnSave" destination="edA-qZ-tMd" id="gxn-tx-kAU"/>
@@ -65,7 +67,7 @@
                     <rect key="frame" x="8" y="288" width="304" height="60"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9d-Ql-t2c">
-                            <rect key="frame" x="8" y="10" width="91" height="30"/>
+                            <rect key="frame" x="8" y="10" width="90.5" height="30"/>
                             <state key="normal" title="Reset">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -73,7 +75,7 @@
                                 <action selector="btnReset_Click:" destination="-1" eventType="touchUpInside" id="iGN-kN-AwT"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhw-jJ-XxI">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhw-jJ-XxI">
                             <rect key="frame" x="106" y="10" width="91" height="30"/>
                             <state key="normal" title="Record">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -83,7 +85,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WPa-k1-obY">
-                            <rect key="frame" x="205" y="10" width="91" height="30"/>
+                            <rect key="frame" x="205" y="10" width="90.5" height="30"/>
                             <state key="normal" title="Finish">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -91,7 +93,7 @@
                                 <action selector="btnFinish_Click:" destination="-1" eventType="touchUpInside" id="ryg-Gy-EcF"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jST-7E-KXb">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jST-7E-KXb">
                             <rect key="frame" x="106" y="10" width="91" height="30"/>
                             <state key="normal" title="Play">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -102,7 +104,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edA-qZ-tMd">
-                            <rect key="frame" x="205" y="10" width="91" height="30"/>
+                            <rect key="frame" x="205" y="10" width="90.5" height="30"/>
                             <state key="normal" title="Save">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -142,6 +144,26 @@
                         </mask>
                     </variation>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajX-zg-gtb">
+                    <rect key="frame" x="12" y="356" width="55" height="30"/>
+                    <state key="normal" title="PlayBG">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" title="Stop"/>
+                    <connections>
+                        <action selector="btnPlayBg_Click:" destination="-1" eventType="touchUpInside" id="1uM-7T-g2a"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6eB-Pv-bN8">
+                    <rect key="frame" x="75" y="356" width="82" height="30"/>
+                    <state key="normal" title="PlayRecord">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" title="Stop"/>
+                    <connections>
+                        <action selector="btnPlayRecord_Click:" destination="-1" eventType="touchUpInside" id="ER2-zO-HIM"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
